@@ -95,7 +95,7 @@ function contactForm()
 }
 
 
-jQuery(document).ready(function() {
+jQuery(windows).on('load', function() {
     'use strict';
 	contactForm();
 })	

@@ -1,5 +1,6 @@
 /* JavaScript Document */
-jQuery(window).on('load', function() {
+function carouselLoad()
+{
     'use strict';
 	
 	
@@ -415,5 +416,10 @@ jQuery(window).on('load', function() {
 		} ); 
 	}
 
-});
+};
+
+jQuery(document).ready(function () {
+	'use strict';
+	carouselLoad();
+})	
 /* Document .ready END */

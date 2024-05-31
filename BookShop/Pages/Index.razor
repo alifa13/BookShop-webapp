@@ -1,9 +1,41 @@
 ﻿@page "/"
+@inject IJSRuntime JsRuntime
 
-<PageTitle>Index</PageTitle>
+<div class="page-content bg-white">
 
-<h1>Hello, world!</h1>
+	<SwiperBanner />
 
-Welcome to your new app.
+	<Client />
+	
+	<RecommendSection />
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+	<IconBox />
+	
+	<BookSale />
+	
+	<FeatureProduct />
+
+	<SpecialOffer />
+	
+	<Testimonial />
+	
+	<LatestNews />
+	
+	<FeatureBox />
+	
+	<NewsLetter />
+
+</div>
+
+
+
+@code {
+	protected async override Task OnInitializedAsync()
+	{
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/custom.js");
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.ajax.js");
+
+		await base.OnInitializedAsync();
+	}
+}
