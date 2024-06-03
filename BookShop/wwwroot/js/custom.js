@@ -4,7 +4,6 @@ Core script to handle the entire theme and core functions
 **/
 var Bookland = function(){
 	/* Search Bar ============ */
-	siteUrl = '';
 	
 	var screenWidth = $( window ).width();
 	
@@ -592,7 +591,7 @@ var Bookland = function(){
 			boxHover();
 			wow_animation();
 			onePageLayout();
-			dzTheme();
+			//dzTheme();
 			homeSearch();
 			MagnificPopup();
 			scrollTop();

@@ -107,6 +107,10 @@
     }
 }
 
+html {
+    direction:rtl
+}
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -5521,7 +5525,7 @@ fieldset:disabled .woocommerce #place_order,
     }
 
 .tab-content > .tab-pane {
-    display: none;
+    display: block;
 }
 
 .tab-content > .active {
@@ -6406,7 +6410,7 @@ fieldset:disabled .woocommerce #place_order,
 }
 
     .breadcrumb-item + .breadcrumb-item::before {
-        float: left;
+        float: right;
         padding-right: 0.5rem;
         color: #6c757d;
         content: var(--bs-breadcrumb-divider, "https://bookland.dexignzone.com/") /* rtl: var(--bs-breadcrumb-divider, "/") */;
@@ -9101,7 +9105,7 @@ fieldset:disabled .woocommerce #place_order,
 }
 
 .me-2 {
-    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
 }
 
 .me-3 {
@@ -33982,12 +33986,12 @@ body.woo-variation-swatches .variable-items-wrapper .variable-item:not(.radio-va
         }
 
     .breadcrumb-row ul .breadcrumb-item + .breadcrumb-item::before {
-        content: "\f105";
+        content: "\f104";
         color: #ffffff;
         font-weight: 700;
         font-family: "Font Awesome 5 Free";
         font-size: 15px;
-        padding-right: 10px;
+        padding-left: 10px;
         top: 0px;
         position: relative;
     }
