@@ -213,5 +213,10 @@
 <!--Swiper Banner End-->
 
 @code {
-	
+	protected async override Task OnInitializedAsync()
+	{
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/custom.js");
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.ajax.js");
+	}
 }

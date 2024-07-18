@@ -2784,11 +2784,12 @@ textarea.form-control-lg {
     min-height: 1.6rem;
     padding-left: 1.5em;
     margin-bottom: 0.125rem;
+    margin-right: 1rem;
 }
 
     .form-check .form-check-input {
-        float: left;
-        margin-left: -1.5em;
+        float: right;
+        margin-right: -1.5em;
     }
 
 .form-check-input {
@@ -4713,7 +4714,7 @@ fieldset:disabled .woocommerce #place_order,
     margin: 0;
     font-size: 1rem;
     color: #777777;
-    text-align: left;
+    text-align: right;
     list-style: none;
     background-color: #ffffff;
     background-clip: padding-box;
@@ -16373,9 +16374,9 @@ section {
         }
 
     .main-slider.style-1 .banner-content .text {
-        padding-left: 32px;
+        padding-right: 32px;
         color: rgba(255, 255, 255, 0.8);
-        border-left: 1px solid var(--primary);
+        border-right: 1px solid var(--primary);
         font-weight: var(--headings-font-weight2);
     }
 
@@ -20268,7 +20269,7 @@ button:focus {
 
                 .acod-content .widget.widget_services .form-check .form-check-label {
                     font-family: var(--font-family-title);
-                    margin-left: 10px;
+                    margin-right: 10px;
                     font-size: 15px;
                 }
 
@@ -29320,7 +29321,7 @@ pre {
         .filter-area .category .form-group .woocommerce input.button, .woocommerce .filter-area .category .form-group input.button,
         .filter-area .category .form-group .woocommerce #place_order, .woocommerce .filter-area .category .form-group #place_order {
             border-bottom: 0;
-            padding: 0px 20px 0 0;
+            padding: 0px 0px 0px 20px;
             border: 0;
             background: transparent;
             color: var(--secondary);
@@ -29582,7 +29583,7 @@ pre {
     min-width: 200px;
     width: 200px;
     min-height: 280px;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
     .dz-shop-card.style-2 .dz-media img {
@@ -33713,8 +33714,8 @@ body.woo-variation-swatches .variable-items-wrapper .variable-item:not(.radio-va
 
             .cart-list li .media .media-body {
                 position: relative;
-                padding-left: 10px;
-                padding-right: 30px;
+                padding-right: 10px;
+                padding-left: 30px;
                 flex: 1;
             }
 
@@ -33741,7 +33742,7 @@ body.woo-variation-swatches .variable-items-wrapper .variable-item:not(.radio-va
                     height: 24px;
                     line-height: 24px;
                     position: absolute;
-                    right: 0px;
+                    left: 0px;
                     text-align: center;
                     top: 50%;
                     width: 24px;

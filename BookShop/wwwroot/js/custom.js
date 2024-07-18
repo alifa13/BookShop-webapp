@@ -564,7 +564,7 @@ var Bookland = function(){
 	
 	var cartButton = function(){
 		$(".item-close").on('click',function(){
-			$(this).closest(".cart-item").hide('500');
+			$(this).closest(".cart-item").remove()
 		});
 		$('.cart-btn').unbind().on('click',function(){
 			$(".cart-list").slideToggle('slow');
@@ -580,10 +580,10 @@ var Bookland = function(){
 	}
 	
 	/* handleSupport */
-	var handleSupport = function(){
-		var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
-		jQuery('body').append(support);
-	}
+	//var handleSupport = function(){
+	//	var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
+	//	jQuery('body').append(support);
+	//}
 	
 	/* Function ============ */
 	return {
@@ -614,7 +614,7 @@ var Bookland = function(){
 			handleHeaderMenuItem();
 			handleFinalCountDown();
 			cartButton();
-			handleSupport();
+			//handleSupport();
 		},
 
 		load:function(){

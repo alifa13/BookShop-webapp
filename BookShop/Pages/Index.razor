@@ -32,9 +32,14 @@
 @code {
 	protected async override Task OnInitializedAsync()
 	{
-		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/custom.js");
-		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
-		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.ajax.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/bootstrap/dist/js/bootstrap.bundle.min.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/bootstrap-select/dist/js/bootstrap-select.min.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/counter/waypoints-min.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/counter/counterup.min.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/swiper/swiper-bundle.min.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.ajax.js");
+		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/custom.js");
 
 		await base.OnInitializedAsync();
 	}
