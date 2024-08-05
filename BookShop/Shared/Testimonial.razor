@@ -1,4 +1,6 @@
-﻿<!-- Testimonial -->
+﻿@inject IJSRuntime JsRuntime
+
+<!-- Testimonial -->
 <section class="content-inner-2 testimonial-wrapper">
 	<div class="container">
 		<div class="testimonial">
@@ -172,5 +174,10 @@
 <!-- Testimonial End -->
 
 @code {
-
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/swiper/swiper-bundle.min.js");
+		var _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
+		await _jsModule.InvokeVoidAsync("carouselLoad");
+	}
 }

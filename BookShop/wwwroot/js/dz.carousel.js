@@ -1,9 +1,6 @@
 /* JavaScript Document */
-function carouselLoad()
-{
-    'use strict';
-	
-	
+export function carouselLoad()
+{	
 	// service-silder-swiper
 	if(jQuery('.main-swiper').length > 0){
 		var swiper = new Swiper(".main-swiper-thumb", {
@@ -418,8 +415,8 @@ function carouselLoad()
 
 };
 
-jQuery(document).ready(function () {
-	'use strict';
-	carouselLoad();
-})	
+//jQuery(document).ready(function () {
+//	'use strict';
+//	carouselLoad();
+//})	
 /* Document .ready END */

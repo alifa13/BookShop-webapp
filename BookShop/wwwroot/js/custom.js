@@ -502,6 +502,8 @@ var Bookland = function(){
 					'max': 100
 				}
 			});
+
+			tooltipSlider.noUiSlider.set([20, 90]);
 		}
 	}
 	

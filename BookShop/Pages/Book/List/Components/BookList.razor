@@ -1,7 +1,7 @@
 ﻿@page "/book/list"
 @inject IJSRuntime JsRuntime
-
-
+@inject ShopFilterStateContainer shopFilterStateContainer
+@implements IDisposable
 
 <div class="col-md-12 col-sm-12">
 	<div class="dz-shop-card style-2">
@@ -410,7 +410,19 @@
 		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/custom.js");
 		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
 		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.ajax.js");
-		
+		shopFilterStateContainer.OnStateChange += FilterChanged;
+
+
 		await base.OnInitializedAsync();
+	}
+
+	private void FilterChanged()
+	{
+		var filter = shopFilterStateContainer.ShopFilter;
+	}
+
+	public void Dispose()
+	{
+		shopFilterStateContainer.OnStateChange -= FilterChanged;
 	}
 }

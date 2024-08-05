@@ -1,4 +1,6 @@
-﻿<!-- Feature Product -->
+﻿@inject IJSRuntime JsRuntime
+
+<!-- Feature Product -->
 <section class="content-inner-1 bg-grey reccomend">
 	<div class="container">
 		<div class="section-head text-center">
@@ -30,7 +32,7 @@
 							</div>
 							<div class="bookcard-footer">
 								<a href="shop-cart.html" class="btn btn-primary btnhover m-t15 m-r10">الان بخر</a>
-								<a href="books-detail.html" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
+								<a href="/book/3" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
 							</div>
 						</div>
 					</div>
@@ -55,7 +57,7 @@
 							</div>
 							<div class="bookcard-footer">
 								<a href="shop-cart.html" class="btn btn-primary btnhover m-t15 m-r10">الان بخر</a>
-								<a href="books-detail.html" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
+								<a href="/book/3" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
 							</div>
 						</div>
 					</div>
@@ -80,7 +82,7 @@
 							</div>
 							<div class="bookcard-footer">
 								<a href="shop-cart.html" class="btn btn-primary btnhover m-t15 m-r10">الان بخر</a>
-								<a href="books-detail.html" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
+								<a href="/book/3" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
 							</div>
 						</div>
 					</div>
@@ -105,7 +107,7 @@
 							</div>
 							<div class="bookcard-footer">
 								<a href="shop-cart.html" class="btn btn-primary btnhover m-t15 m-r10">الان بخر</a>
-								<a href="books-detail.html" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
+								<a href="/book/3" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
 							</div>
 						</div>
 					</div>
@@ -130,7 +132,7 @@
 							</div>
 							<div class="bookcard-footer">
 								<a href="shop-cart.html" class="btn btn-primary btnhover m-t15 m-r10">الان بخر</a>
-								<a href="books-detail.html" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
+								<a href="/book/3" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
 							</div>
 						</div>
 					</div>
@@ -155,7 +157,7 @@
 							</div>
 							<div class="bookcard-footer">
 								<a href="shop-cart.html" class="btn btn-primary btnhover m-t15 m-r10">الان بخر</a>
-								<a href="books-detail.html" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
+								<a href="/book/3" class="btn btn-outline-secondary btnhover m-t15">جزئیاتو ببین</a>
 							</div>
 						</div>
 					</div>
@@ -172,5 +174,10 @@
 <!-- Feature Product End -->
 
 @code {
-
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/swiper/swiper-bundle.min.js");
+		var _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
+		await _jsModule.InvokeVoidAsync("carouselLoad");
+	}
 }

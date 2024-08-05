@@ -1,4 +1,6 @@
-﻿<!--Recommend Section Start-->
+﻿@inject IJSRuntime JsRuntime
+
+<!--Recommend Section Start-->
 <section class="content-inner-1 bg-grey reccomend">
 	<div class="container">
 		<div class="section-head text-center">
@@ -98,5 +100,12 @@
 </section>
 
 @code {
+
+	protected async override Task OnInitializedAsync()
+	{
+		await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/swiper/swiper-bundle.min.js");
+		var _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dz.carousel.js");
+		await _jsModule.InvokeVoidAsync("carouselLoad");
+	}
 
 }

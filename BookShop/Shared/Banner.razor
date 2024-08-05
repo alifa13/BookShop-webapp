@@ -1,0 +1,24 @@
+﻿<div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm" style="background-image:url(images/background/uc.jpg);">
+	<div class="container">
+		<div class="dz-bnr-inr-entry">
+			<h1>@Title</h1>
+			<nav aria-label="breadcrumb" class="breadcrumb-row">
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a href="@PrePageRoute">@PrePageTitle</a></li>
+					<li class="breadcrumb-item">@Title</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public string Title { get; set; }
+
+	[Parameter]
+	public string PrePageTitle { get; set; }
+
+	[Parameter]
+	public string PrePageRoute { get; set; }
+}

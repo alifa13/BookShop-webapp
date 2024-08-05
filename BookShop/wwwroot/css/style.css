@@ -17361,9 +17361,9 @@ label.error {
         color: var(--primary);
     }
 
-.form-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+/*.form-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 100%;
-}
+}*/
 
 .label-title {
     font-weight: 600;
@@ -30333,22 +30333,22 @@ pre {
         display: inline-block;
         border-top: 1px solid #eee;
         color: #232323;
-        border-left: 3px solid rgba(0, 0, 0, 0);
+        border-right: 3px solid rgba(0, 0, 0, 0);
     }
 
         .shop-account .account-list li a.active {
             background: #eaa4511a;
-            border-left-color: var(--primary);
+            border-right-color: var(--primary);
         }
 
         .shop-account .account-list li a:hover {
             background: #eaa4511a;
-            border-left-color: var(--primary);
+            border-right-color: var(--primary);
         }
 
         .shop-account .account-list li a i {
             color: var(--primary);
-            margin-right: 10px;
+            margin-left: 10px;
         }
 
 .shop-bx {
@@ -33491,6 +33491,7 @@ body.woo-variation-swatches .variable-items-wrapper .variable-item:not(.radio-va
         text-align: center;
         line-height: 48px;
         justify-content: center;
+        border: 0px !important
     }
 
 @media only screen and (max-width: 1280px) {
