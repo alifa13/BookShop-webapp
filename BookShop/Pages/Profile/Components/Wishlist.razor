@@ -1,0 +1,48 @@
+﻿@page "/Profile/Wishlist"
+
+<div class="shop-bx shop-profile">
+    <div class="shop-bx-title clearfix">
+        <h5 class="text-uppercase">علاقه مندی ها</h5>
+    </div>
+    <div style="border:1px solid rgb(222 226 230); border-top-left-radius:0.375rem;border-top-right-radius:0.375rem; padding: 20px">
+        <Table FixedHeader FixedHeaderTableHeight="300px">
+             <TableHeader ThemeContrast="ThemeContrast.Light">
+                 <TableRow>
+                     <TableHeaderCell>#</TableHeaderCell>
+                     <TableHeaderCell>First Name</TableHeaderCell>
+                     <TableHeaderCell>Last Name</TableHeaderCell>
+                     <TableHeaderCell>Username</TableHeaderCell>
+                 </TableRow>
+             </TableHeader>
+             <TableBody>
+                 @for (int i = 1; i <= 50; ++i)
+                {
+                    var index = i.ToString();
+
+                    <TableRow @key="@index">
+                        <TableRowHeader>@index</TableRowHeader>
+                        <TableRowCell>Column content</TableRowCell>
+                        <TableRowCell>Column content</TableRowCell>
+                        <TableRowCell>
+                            <Button Color="Color.Primary">مشاهده</Button>
+                        </TableRowCell>
+                    </TableRow>
+                }
+            </TableBody>
+        </Table>
+    </div>
+
+    <Field>
+        <FileEdit Changed="@OnChanged" Filter=".jpg, .png, .gif" />
+    </Field>
+</div>
+
+@code {
+    async Task OnChanged(FileChangedEventArgs e)
+    {
+        foreach (var file in e.Files)
+        {
+            var stream = file.OpenReadStream();
+        }
+    }
+}
