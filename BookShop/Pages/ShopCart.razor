@@ -1,4 +1,10 @@
 ﻿@page "/ShopCart"
+@using BookShop.ApiCaller.Api;
+@using BookShop.ApiCaller.Model;
+@using BookShop.Services;
+@using BookShop.Shared.Models;
+
+@inject ShopCartService ShopCartService;
 
 <div class="page-content">
 	<!-- inner page banner -->
@@ -14,87 +20,30 @@
 						<table class="table check-tbl">
 							<thead>
 								<tr>
-									<th>Product</th>
-									<th>Product name</th>
-									<th>Unit Price</th>
-									<th>Quantity</th>
-									<th>Total</th>
+									<th>تصویر</th>
+									<th>عنوان</th>
+									<th>مبلغ</th>
+									<th>تعداد</th>
+									<th>جمع</th>
 									<th class="text-end">Close</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="product-item-img"><img src="images/books/large/bigbook1.jpg" alt=""></td>
-									<td class="product-item-name">Battle Drive</td>
-									<td class="product-item-price">$28.00</td>
-									<td class="product-item-quantity">
-										<div class="quantity btn-quantity style-1 me-3">
-											<NumericPicker @bind-Value="@a" Min="0" Max="100" />
-										</div>
-									</td>
-									<td class="product-item-totle">$28.00</td>
-									<td class="product-item-close"><a href="javascript:void(0);" class="ti-close"></a></td>
-								</tr>
-								<tr>
-									<td class="product-item-img"><img src="images/books/grid/book2.jpg" alt=""></td>
-									<td class="product-item-name">Home</td>
-									<td class="product-item-price">$28.00</td>
-									<td class="product-item-quantity">
-										<div class="quantity btn-quantity style-1 me-3">
-											<NumericPicker @bind-Value="@a" Min="0" Max="100" />
-										</div>
-									</td>
-									<td class="product-item-totle">$28.00</td>
-									<td class="product-item-close"><a href="javascript:void(0);" class="ti-close"></a></td>
-								</tr>
-								<tr>
-									<td class="product-item-img"><img src="images/books/grid/book4.jpg" alt=""></td>
-									<td class="product-item-name">Such A Fun Age</td>
-									<td class="product-item-price">$28.00</td>
-									<td class="product-item-quantity">
-										<div class="quantity btn-quantity style-1 me-3">
-											<NumericPicker @bind-Value="@a" Min="0" Max="100" />
-										</div>
-									</td>
-									<td class="product-item-totle">$28.00</td>
-									<td class="product-item-close"><a href="javascript:void(0);" class="ti-close"></a></td>
-								</tr>
-								<tr>
-									<td class="product-item-img"><img src="images/books/grid/book1.jpg" alt=""></td>
-									<td class="product-item-name">Real Life</td>
-									<td class="product-item-price">$28.00</td>
-									<td class="product-item-quantity">
-										<div class="quantity btn-quantity style-1 me-3">
-											<NumericPicker @bind-Value="@a" Min="0" Max="100" />
-										</div>
-									</td>
-									<td class="product-item-totle">$28.00</td>
-									<td class="product-item-close"><a href="javascript:void(0);" class="ti-close"></a></td>
-								</tr>
-								<tr>
-									<td class="product-item-img"><img src="images/books/grid/book6.jpg" alt=""></td>
-									<td class="product-item-name">Cat Adventure</td>
-									<td class="product-item-price">$28.00</td>
-									<td class="product-item-quantity">
-										<div class="quantity btn-quantity style-1 me-3">
-											<NumericPicker @bind-Value="@a" Min="0" Max="100" />
-										</div>
-									</td>
-									<td class="product-item-totle">$28.00</td>
-									<td class="product-item-close"><a href="javascript:void(0);" class="ti-close"></a></td>
-								</tr>
-								<tr>
-									<td class="product-item-img"><img src="images/books/grid/book5.jpg" alt=""></td>
-									<td class="product-item-name">Take Out Tango</td>
-									<td class="product-item-price">$28.00</td>
-									<td class="product-item-quantity">
-										<div class="quantity btn-quantity style-1 me-3">
-											<NumericPicker @bind-Value="@a" Min="0" Max="100" />
-										</div>
-									</td>
-									<td class="product-item-totle">$28.00</td>
-									<td class="product-item-close"><a href="javascript:void(0);" class="ti-close"></a></td>
-								</tr>
+								@foreach (var item in shopCartItems)
+								{
+									<tr>
+										<td class="product-item-img"><img src="images/books/large/bigbook1.jpg" alt=""></td>
+										<td class="product-item-name">@(item.BookTitle)</td>
+										<td class="product-item-price">@(item.BookPrice) ریال</td>
+										<td class="product-item-quantity">
+											<div class="quantity btn-quantity style-1 me-3">
+												<NumericPicker @bind-Value="@(item.Count)" Min="0" Max="100" />
+											</div>
+										</td>
+										<td class="product-item-totle">@(item.BookTotalPrice)</td>
+										<td class="product-item-close"><a class="ti-close"></a></td>
+									</tr>
+								}								
 							</tbody>
 						</table>
 					</div>
@@ -126,7 +75,7 @@
 								<input type="text" class="form-control" placeholder="Coupon Code">
 							</div>
 							<div class="form-group">
-								<a href="shop-cart.html" class="btn btn-primary btnhover" type="button">Apply Coupon</a>
+								<a href="/ShopCart" class="btn btn-primary btnhover" type="button">Apply Coupon</a>
 							</div>
 						</form>
 					</div>
@@ -169,4 +118,37 @@
 
 @code {
 	private int a = 1;
+	List<BookDTO> books = new List<BookDTO>();
+	private List<ShopCartItemModel> shopCartItems = new List<ShopCartItemModel>();
+
+	protected override Task OnInitializedAsync()
+	{
+		return base.OnInitializedAsync();
+	}
+	private async void LoadCart()
+	{
+		var cartItems = await ShopCartService.GetCartItems();
+		var bookIds = cartItems.Keys?.ToList() ?? new List<int>();
+
+		var bookReportResponse = await ApiCallService.BookApi.ApiBookReportPostAsync(new BookReportFilterDTOApiRequest
+			{
+				RequestDTO = new BookReportFilterDTO
+				{
+					BookIDs = bookIds
+				}
+			});
+
+		if (!bookReportResponse?.IsSuccess ?? true)
+			return;
+
+		books = bookReportResponse!.ResponseDTO.ResultList;
+
+		shopCartItems = books?.Select(book => new ShopCartItemModel
+		{
+			BookID = book.Id,
+			Count = cartItems.GetValueOrDefault(book.Id),
+			BookPrice = (decimal)book.Price,
+			BookTitle = book.Title
+		})?.ToList() ?? new List<ShopCartItemModel>();
+	}
 }

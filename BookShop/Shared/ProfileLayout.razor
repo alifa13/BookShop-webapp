@@ -1,76 +1,97 @@
-﻿@inherits LayoutComponentBase
+﻿@using BookShop.Services;
+@using BookShop.Utility;
+@inherits LayoutComponentBase
 @layout MainLayout
+
+@inject CookieHelper CookieHelper;
 
 <!-- Content -->
 <div class="page-content bg-white">
-	<!-- contact area -->
-	<div class="content-block">
-		<!-- Browse Jobs -->
-		<section class="content-inner bg-white">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-3 col-lg-4 m-b30">
-						<div class="sticky-top">
-							<div class="shop-account">
-								<div class="account-detail text-center">
-									<div class="my-image">
-										<a href="javascript:void(0);">
-											<img alt="" src="images/profile3.jpg">
-										</a>
-									</div>
-									<div class="account-title">
-										<div class="">
-											<h4 class="m-b5"><a href="javascript:void(0);">David Matin</a></h4>
-											<p class="m-b0"><a href="javascript:void(0);">Web developer</a></p>
-										</div>
-									</div>
-								</div>
-								<ul class="account-list">
-									<li>
-										<a href="/Profile/PersonalInfo" class="active">
-											<i class="far fa-user" aria-hidden="true"></i>
-											<span>اطلاعات کاربری</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Profile/Orders">
-											<i class="flaticon-shopping-cart-1"></i>
-											<span>سفارشات نقدی من</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Profile/Orders">
-											<i class="flaticon-shopping-cart-1"></i>
-											<span>سفارشات اقساطی من</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Profile/Wishlist">
-											<i class="far fa-heart" aria-hidden="true"></i>
-											<span>علاقه مندی ها</span>
-										</a>
-									</li>
-									<li>
-										<a href="shop-login.html">
-											<i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-											<span>خروج</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-9 col-lg-8 m-b30">
-						@Body
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Browse Jobs END -->
-	</div>
+    <!-- contact area -->
+    <div class="content-block">
+        <!-- Browse Jobs -->
+        <section class="content-inner bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 m-b30">
+                        <div class="sticky-top">
+                            <div class="shop-account">
+                                <div class="account-detail text-center">
+                                    <div class="my-image">
+                                        <a href="/Profile/PersonalInfo">
+                                            <img alt="" src="images/IconCustomer.png">
+                                        </a>
+                                    </div>
+                                    <div class="account-title">
+                                        <div class="">
+                                            <h4 class="m-b5">@(customer is null ? string.Empty : $"{customer.FirstName} {customer.LastName}")</h4>
+                                            <p class="m-b0">@(customer is null ? string.Empty : customer.Mobile)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="account-list">
+                                    <li>
+                                        <a href="/Profile/PersonalInfo" class="active">
+                                            <i class="far fa-user" aria-hidden="true"></i>
+                                            <span>اطلاعات کاربری</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Profile/Orders">
+                                            <i class="flaticon-shopping-cart-1"></i>
+                                            <span>سفارشات من</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Profile/Wishlist">
+                                            <i class="far fa-heart" aria-hidden="true"></i>
+                                            <span>علاقه مندی ها</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-login.html">
+                                            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                            <span>خروج</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 m-b30">
+                        @Body
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Browse Jobs END -->
+    </div>
 </div>
 <!-- Content END-->
-
 @code {
+    private ApiCaller.Model.CustomerDTO? customer;
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await CustomerGet();
+    }
+
+    private async Task CustomerGet()
+    {
+        var userIdStr = await CookieHelper.GetCookie("User");
+        if (string.IsNullOrWhiteSpace(userIdStr))
+            return;
+
+        int userId = Int32.Parse(userIdStr);
+
+        var customerGetResponse = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiCaller.Model.ApiRequest
+            {
+                Id = userId
+            });
+
+        if (!(customerGetResponse?.IsSuccess ?? false))
+            return;
+
+        customer = customerGetResponse.ResponseDTO;
+    }
 }

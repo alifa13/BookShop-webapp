@@ -5525,14 +5525,6 @@ fieldset:disabled .woocommerce #place_order,
         width: 100%;
     }
 
-.tab-content > .tab-pane {
-    display: block;
-}
-
-.tab-content > .active {
-    display: block;
-}
-
 .navbar {
     position: relative;
     display: flex;
@@ -6336,6 +6328,9 @@ fieldset:disabled .woocommerce #place_order,
 
 .accordion-header {
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
 .accordion-item {
@@ -30362,6 +30357,7 @@ pre {
         padding: 10px 0;
         font-size: 22px;
         margin-bottom: 30px;
+        margin-top : 30px;
     }
 
 .dz-box.product {

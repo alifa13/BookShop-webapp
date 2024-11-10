@@ -1,0 +1,53 @@
+﻿@page "/Profile/Orders/{OrderId}"
+
+<Accordion>
+    <AccordionItem Visible="true">
+        <AccordionHeader>
+            <img src="images/IconInfo.png" />
+            <Heading Size="HeadingSize.Is5">
+                <AccordionToggle>اطلاعات سفارش</AccordionToggle>
+            </Heading>
+        </AccordionHeader>
+        <AccordionBody>
+
+        </AccordionBody>
+    </AccordionItem>
+    <AccordionItem>
+        <AccordionHeader>
+            <img src="images/IconBuyer.png" />
+            <Heading Size="HeadingSize.Is5">
+                <AccordionToggle>مشصات خریدار</AccordionToggle>
+            </Heading>
+        </AccordionHeader>
+        <AccordionBody>
+            
+        </AccordionBody>
+    </AccordionItem>
+    <AccordionItem>
+        <AccordionHeader>
+            <img src="images/IconOrderDetail.png" />
+            <Heading Size="HeadingSize.Is5">
+                <AccordionToggle>اقلام سفارش</AccordionToggle>
+            </Heading>
+        </AccordionHeader>
+        <AccordionBody>
+            Blazorise is a component library built on top of Blazor, which is a framework from Microsoft for building interactive client-side web UIs using .NET. Blazorise provides a rich set of components that are easy to use and customizable, helping developers to build responsive and modern web applications more efficiently.
+        </AccordionBody>
+    </AccordionItem>
+    <AccordionItem>
+        <AccordionHeader>
+            <img src="images/IconInstallment.png" />
+            <Heading Size="HeadingSize.Is5">
+                <AccordionToggle>اقساط</AccordionToggle>
+            </Heading>
+        </AccordionHeader>
+        <AccordionBody>
+            Blazorise is a component library built on top of Blazor, which is a framework from Microsoft for building interactive client-side web UIs using .NET. Blazorise provides a rich set of components that are easy to use and customizable, helping developers to build responsive and modern web applications more efficiently.
+        </AccordionBody>
+    </AccordionItem>
+</Accordion>
+
+@code {
+    [Parameter]
+    public string OrderId { get; set; }
+}

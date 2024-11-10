@@ -1,0 +1,144 @@
+﻿@page "/User/Register"
+@layout MainLayout
+
+@using BookShop.ApiCaller.Api;
+@using BookShop.Utility;
+
+@inject ToastHelper ToastHelper;
+@inject NavigationManager navManager;
+@inject IConfiguration Configuration;
+
+<!-- inner page banner -->
+<Banner Title="ثبت نام" PrePageTitle="خانه" PrePageRoute="/" />
+<!-- inner page banner End-->
+<!-- contact area -->
+<section class="content-inner shop-account">
+    <!-- Product -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="login-area">
+                    <h4 class="text-secondary">ثبت نام</h4>
+                    <p class="font-weight-600">اگر حساب کاربری ندارید ، لطفا ثبت نام کنید</p>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                نام
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.FirstName)" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                نام خانوادگی
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.LastName)" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                شماره همراه *
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Mobile)" Placeholder="09123456789" Pattern="[0-9]{11}" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                تلفن ثابت *
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Tel)" Placeholder="02511111111"[0-9]{11}" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                پست الکترونیک
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Email)" Role="TextRole.Email" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                کد ملی
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.NationalCode)" Pattern="[0-9]{10}" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                معرف
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Contact)" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                رمز عبور *
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Password)" Placeholder="********" Role="TextRole.Password" autocomplete="new-password" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                    <div class="text-left">
+                        <Button Clicked="RegisterButtonClick" class="btn btn-primary btnhover w-100 me-2">ثبت نام</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product END -->
+</section>
+<!-- contact area End-->
+@code {
+    ICustomerApi _CustomerApi = null;
+    ApiCaller.Model.CustomerRegisterDTO customerRegisterDTO = new ApiCaller.Model.CustomerRegisterDTO()
+        {
+            Customer = new ApiCaller.Model.CustomerDTO()
+        };
+
+    private async void RegisterButtonClick()
+    {
+        _CustomerApi = new CustomerApi(Configuration["ApiBaseAddress"]);
+
+        var response = await _CustomerApi.ApiCustomerRegisterPostAsync(new ApiCaller.Model.CustomerRegisterDTOApiRequest
+            {
+                RequestDTO = customerRegisterDTO
+            });
+
+        if (response?.IsSuccess ?? false)
+        {
+            if (response.ResponseDTO is null)
+            {
+                await ToastHelper.Notify("خطای نامشخص هنگام ثبت نام", ToastType.Error);
+                return;
+            }
+
+            await ToastHelper.Notify("ثبت نام با موفقیت انجام شد", ToastType.Success);
+            navManager.NavigateTo("/", false);
+
+        }
+        else
+            await ToastHelper.Notify(!string.IsNullOrWhiteSpace(response?.Message) ? response.Message : "خطای نامشخص هنگام ثبت نام", ToastType.Error);
+    }
+}

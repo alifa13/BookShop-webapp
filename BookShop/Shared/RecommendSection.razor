@@ -1,11 +1,15 @@
-﻿@inject IJSRuntime JsRuntime
+﻿@using BookShop.Services;
+
+@inject IJSRuntime JsRuntime
+@inject ShopCartService shopCartService
+
 
 <!--Recommend Section Start-->
 <section class="content-inner-1 bg-grey reccomend">
 	<div class="container">
 		<div class="section-head text-center">
-			<h2 class="title">Recomended For You</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+			<h2 class="title">کتاب های دفاع مقدس</h2>
+			<p>جدیدترین کتاب های با موضوع دفاع مقدس و هشت سال جنگ تحمیلی</p>
 		</div>
 		<!-- Swiper -->
 		<div class="swiper-container swiper-two">
@@ -18,7 +22,7 @@
 						<div class="dz-content">
 							<h4 class="title">Adventure</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -30,7 +34,7 @@
 						<div class="dz-content">
 							<h4 class="title">Take Tango</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -42,7 +46,7 @@
 						<div class="dz-content">
 							<h4 class="title">Home</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -54,7 +58,7 @@
 						<div class="dz-content">
 							<h4 class="title">Thunder Stunt</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -66,7 +70,7 @@
 						<div class="dz-content">
 							<h4 class="title">Heavy Lift</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -78,7 +82,7 @@
 						<div class="dz-content">
 							<h4 class="title">Real Life</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -90,7 +94,7 @@
 						<div class="dz-content">
 							<h4 class="title">Terrible</h4>
 							<span class="price">$18,78</span>
-							<a href="shop-cart.html" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
+							<a @onclick="(() => AddToCart(5))" class="btn btn-secondary btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> افزودن به سبد خرید</a>
 						</div>
 					</div>
 				</div>
@@ -108,4 +112,8 @@
 		await _jsModule.InvokeVoidAsync("carouselLoad");
 	}
 
+	private void AddToCart(int bookId)
+	{
+		shopCartService.AddToCart(bookId);
+	}
 }

@@ -1,4 +1,5 @@
 ﻿@page "/Profile/Wishlist"
+@using BookShop.ApiCaller.Model;
 
 <div class="shop-bx shop-profile">
     <div class="shop-bx-title clearfix">
@@ -8,10 +9,10 @@
         <Table FixedHeader FixedHeaderTableHeight="300px">
              <TableHeader ThemeContrast="ThemeContrast.Light">
                  <TableRow>
-                     <TableHeaderCell>#</TableHeaderCell>
-                     <TableHeaderCell>First Name</TableHeaderCell>
-                     <TableHeaderCell>Last Name</TableHeaderCell>
-                     <TableHeaderCell>Username</TableHeaderCell>
+                     <TableHeaderCell></TableHeaderCell>
+                     <TableHeaderCell>عنوان کتاب</TableHeaderCell>
+                     <TableHeaderCell>قیمت (ریال)</TableHeaderCell>
+                     <TableHeaderCell></TableHeaderCell>
                  </TableRow>
              </TableHeader>
              <TableBody>
@@ -24,25 +25,25 @@
                         <TableRowCell>Column content</TableRowCell>
                         <TableRowCell>Column content</TableRowCell>
                         <TableRowCell>
-                            <Button Color="Color.Primary">مشاهده</Button>
+                            <a onclick="@DeleteWishitemButtonClick" class="ti-close"></a>
                         </TableRowCell>
                     </TableRow>
                 }
             </TableBody>
         </Table>
     </div>
-
-    <Field>
-        <FileEdit Changed="@OnChanged" Filter=".jpg, .png, .gif" />
-    </Field>
 </div>
 
 @code {
-    async Task OnChanged(FileChangedEventArgs e)
+    List<CustomerWishlistDTO> wishList = new List<CustomerWishlistDTO>();
+
+    private async Task LoadWishlist()
     {
-        foreach (var file in e.Files)
-        {
-            var stream = file.OpenReadStream();
-        }
+        
+    }
+
+    private async Task DeleteWishitemButtonClick()
+    {
+        
     }
 }

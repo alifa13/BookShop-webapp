@@ -1,24 +1,86 @@
 ﻿@page "/user/login"
+@using BookShop.ApiCaller.Api;
+@using BookShop.Utility;
+
+@inject ToastHelper ToastHelper;
+@inject NavigationManager navManager;
+@inject IConfiguration Configuration;
+@inject CookieHelper CookieHelper;
+@inject UserLoginStateContainer UserLoginStateContainer;
 
 
 <form id="login" class="tab-pane active col-12 show">
     <h4 class="text-secondary">ورود</h4>
-    <p class="font-weight-600">If you have an account with us, please log in.</p>
+    <p class="font-weight-600">اگر حساب کاربری دارید ، می توانید وارد شوید</p>
     <div class="mb-4">
-        <label class="label-title">شماره تلفن همراه *</label>
-        <input name="dzName" required="" class="form-control" placeholder="09123456789" pattern="[0-9]{11}" type="text">
+        <Field>
+            <FieldLabel Class="label-title">
+                شماره تلفن همراه *
+            </FieldLabel>
+            <FieldBody>
+                <TextEdit @bind-Text="@username" Placeholder="09123456789" Pattern="[0-9]{11}" Role="TextRole.Text" />
+            </FieldBody>
+        </Field>
+        @* <label class="label-title">شماره تلفن همراه *</label>
+        <input name="dzName" required="" class="form-control" placeholder="09123456789" pattern="[0-9]{11}" type="text"> *@
     </div>
     <div class="mb-4">
-        <label class="label-title">رمز عبور *</label>
-        <input name="dzName" required="" class="form-control " placeholder="رمز عبور را وارد کنید" type="password">
+        <Field>
+            <FieldLabel Class="label-title">
+                رمز عبور *
+            </FieldLabel>
+            <FieldBody>
+                <TextEdit @bind-Text="@password" Placeholder="********" Role="TextRole.Password" autocomplete="new-password" />
+            </FieldBody>
+        </Field>
+        @* <label class="label-title">رمز عبور *</label>
+        <input name="dzName" required="" class="form-control " placeholder="رمز عبور را وارد کنید" type="password"> *@
     </div>
     <div class="text-left">
-        <button class="btn btn-primary btnhover me-2">ورود</button>
+        <Button @onclick="LoginButtonClick" class="btn btn-primary btnhover me-2">ورود</Button>
         <a href="/user/forgetpassword" class="m-l5"><i class="fas fa-unlock-alt"></i> فراموشی رمز عبور</a>
     </div>
 </form>
 
 
 @code {
+    string username;
+    string password;
+    IUserApi _UserApi = null;
 
+    private async void LoginButtonClick()
+    {
+        _UserApi = new UserApi(Configuration["ApiBaseAddress"]);
+
+        var response = await _UserApi.ApiUserLoginPostAsync(new ApiCaller.Model.LoginRequestDTOApiRequest
+            {
+                RequestDTO = new ApiCaller.Model.LoginRequestDTO
+                {
+                    UserName = username,
+                    Password = password
+                }
+            });
+
+        if (response?.IsSuccess ?? false)
+        {
+            if (response.ResponseDTO is null)
+            {
+                await ToastHelper.Notify("خطای نامشخص هنگام ورود", ToastType.Error);
+                return;
+            }
+
+            await CookieHelper.SetCookie("WebToken", response.ResponseDTO.WebToken, 60);
+            await CookieHelper.SetCookie("User", response.ResponseDTO.UserId.ToString(), 60);
+            await CookieHelper.SetCookie("Session", response.ResponseDTO.SessionIdentifier, 60);
+
+            await ToastHelper.Notify("ورود با موفقیت انجام شد", ToastType.Success);
+
+            UserLoginStateContainer.SetValue(true, response.ResponseDTO.WebToken, response.ResponseDTO.SessionIdentifier, response.ResponseDTO.UserId);
+            navManager.NavigateTo("/", false);
+
+        }
+        else
+            await ToastHelper.Notify(!string.IsNullOrWhiteSpace(response?.Message) ? response.Message : "خطای نامشخص هنگام ورود", ToastType.Error);
+    }
+    
 }

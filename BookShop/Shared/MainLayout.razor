@@ -1,5 +1,8 @@
-﻿@inherits LayoutComponentBase
-@inject IJSRuntime JsRuntime
+﻿@using BookShop.Utility;
+@inherits LayoutComponentBase
+
+@inject UserLoginStateContainer UserLoginStateContainer
+@inject CookieHelper CookieHelper;
 
 
 <!--Header-->
@@ -14,16 +17,15 @@
 <button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
 
 @code {
-	protected async override Task OnInitializedAsync()
-	{
-		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/jquery.min.js");
-		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/bootstrap/dist/js/bootstrap.bundle.min.js");
-		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/bootstrap-select/dist/js/bootstrap-select.min.js");
-		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/counter/counterup.min.js");
-		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/counter/waypoints-min.js");
-		// await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./vendor/swiper/swiper-bundle.min.js");
-		
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await CookieHelper.GetCookie("WebToken");
+        var userId = await CookieHelper.GetCookie("User");
+        var session = await CookieHelper.GetCookie("Session");
 
-		await base.OnInitializedAsync();
-	}
+        if (string.IsNullOrWhiteSpace(token))
+            UserLoginStateContainer.SetValue(false);
+        else
+            UserLoginStateContainer.SetValue(true, token, session, int.Parse(userId), true);
+    }
 }
