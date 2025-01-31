@@ -41,7 +41,7 @@
                             else
                             {
                                 <a class="nav-link" href="/Profile/PersonalInfo" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/profile1.jpg" alt="/">
+                                    <img src="images/IconCustomer.png" alt="تصویر پرسنلی">
                                     <div class="profile-info">
                                         <h6 class="title">@fullName</h6>
                                         <span>@mobile</span>
@@ -120,7 +120,7 @@
                 <!-- EXTRA NAV -->
                 <div class="extra-nav">
                     <div class="extra-cell">
-                        <a href="contact-us.html" dir="rtl" class="btn btn-primary btnhover">Get In Touch</a>
+                        <a href="contact-us.html" dir="rtl" class="btn btn-primary btnhover">با ما در تماس باشید</a>
                     </div>
                 </div>
 
@@ -166,7 +166,7 @@
     {
         UserLoginStateContainer.OnStateChange += UserLoginStatusChanged;
         ShopCartService.OnCartChange += ShopCartChanged;
-        
+
         shopCartItemCount = (await ShopCartService.GetCartItems())?.Values?.Sum() ?? 0;
 
     }
@@ -181,15 +181,7 @@
     {
         if (UserLoginStateContainer.IsLogin)
         {
-            var response = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiCaller.Model.ApiRequest
-                {
-                    Id = UserLoginStateContainer.UserId
-                });
-
-            if (!(response?.IsSuccess ?? false))
-                return;
-
-            customer = response.ResponseDTO;
+            customer = UserLoginStateContainer.Customer;
             if (customer is null)
                 return;
 
@@ -202,8 +194,11 @@
 
     private async void ShopCartChanged()
     {
-        shopCartItemCount++;
-        await ToastHelper.Notify("کتاب مورد نظر به سبد خرید اضافه شد", ToastType.Success);
+        shopCartItemCount = (await ShopCartService.GetCartItems())?.Values?.Sum() ?? 0;
+        
+        if (shopCartItemCount > 0)
+            await ToastHelper.Notify("کتاب مورد نظر به سبد خرید اضافه شد", ToastType.Success);
+
         StateHasChanged();
     }
 
@@ -227,7 +222,7 @@
             await CookieHelper.DeleteCookie("User");
             await CookieHelper.DeleteCookie("Session");
 
-            UserLoginStateContainer.SetValue(false);
+            UserLoginStateContainer.SetValue(isLogin: false);
             await ToastHelper.Notify("خروج از حساب کاربری با موفقیت انجام شد", ToastType.Success);
 
             navManager.NavigateTo("/", false);

@@ -7,6 +7,9 @@ using Blazorise.Icons.FontAwesome;
 using BookShop.Shared;
 using BookShop.Utility;
 using BookShop.Services;
+using FluentValidation;
+using Blazorise.FluentValidation;
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -27,6 +30,13 @@ builder.Services
 		options.Immediate = true;
 	})
 	.AddBootstrap5Providers()
-	.AddFontAwesomeIcons();
+	.AddFontAwesomeIcons()
+	.AddBlazoriseFluentValidation();
 
-await builder.Build().RunAsync();
+builder.Services.AddValidatorsFromAssembly(typeof(App).Assembly);
+
+var app = builder.Build();
+
+ApiCallService.Configure(app.Services.GetRequiredService<IConfiguration>(), app.Services.GetRequiredService<CookieHelper>());
+
+await app.RunAsync();

@@ -29740,7 +29740,7 @@ pre {
     color: #11142D;
     font-size: 18px;
     font-weight: var(--headings-font-weight);
-    padding: 0 20px 0 0;
+    padding: 0 0 0 20px;
 }
 
 @media only screen and (max-width: 991px) {

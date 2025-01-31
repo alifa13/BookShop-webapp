@@ -1,0 +1,128 @@
+﻿@using BookShop.Services;
+
+@inject UserLoginStateContainer UserLoginStateContainer;
+
+<ModalHeader>
+    <ModalTitle>ثبت آدرس مشتری</ModalTitle>
+</ModalHeader>
+<ModalBody>
+    <div class="row">
+        <div class="col-lg-6">
+            <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is2" Class="label-title">
+                    استان :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is10">
+                    <TextEdit @bind-Text="@(customerAddress.Province)" Role="TextRole.Text" />
+                </FieldBody>
+            </Field>
+        </div>
+        <div class="col-lg-6">
+                <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is2" Class="label-title">
+                    شهر :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is10">
+                    <TextEdit @bind-Text="@(customerAddress.City)" Role="TextRole.Text" />
+                    </FieldBody>
+                </Field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+                <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is2" Class="label-title">
+                    خیابان :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is10">
+                    <TextEdit @bind-Text="@(customerAddress.Street)" Role="TextRole.Text" />
+                    </FieldBody>
+                </Field>
+        </div>
+        <div class="col-lg-6">
+                <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is2" Class="label-title">
+                    کوچه :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is10">
+                    <TextEdit @bind-Text="@(customerAddress.Alley)" Role="TextRole.Text" />
+                    </FieldBody>
+                </Field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+                <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is2" Class="label-title">
+                    پلاک :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is10">
+                    <TextEdit @bind-Text="@(customerAddress.Plaque)" Role="TextRole.Text" />
+                    </FieldBody>
+                </Field>
+        </div>
+        <div class="col-lg-6">
+                <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is2" Class="label-title">
+                    واحد :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is10">
+                    <TextEdit @bind-Text="@(customerAddress.Unit)" Role="TextRole.Text" />
+                    </FieldBody>
+                </Field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+                <Field Margin="Margin.Is1" Horizontal>
+                <FieldLabel ColumnSize="ColumnSize.Is3" Class="label-title">
+                    کد پستی :
+                </FieldLabel>
+                <FieldBody ColumnSize="ColumnSize.Is9">
+                    <TextEdit @bind-Text="@(customerAddress.PostalCode)" Role="TextRole.Text" />
+                    </FieldBody>
+                </Field>
+        </div>
+    </div>
+</ModalBody>
+<ModalFooter>
+    <Button Color="Color.Primary" Clicked="() => SaveAddress()">ثبت</Button>
+</ModalFooter>
+
+@code {
+    [Inject] public IModalService? ModalService { get; set; }
+
+    [Parameter]
+    public Func<Task>? OnSuccess { get; set; }
+
+    ApiCaller.Model.CustomerAddressDTO? customerAddress = new();
+
+    private async Task SaveAddress()
+    {
+        if (UserLoginStateContainer.Customer is null)
+            return;
+
+        customerAddress.CustomerId = UserLoginStateContainer.Customer.Id;
+
+        await ApiCallService.CustomerApi.ConfigureWebToken();
+
+        var response = await ApiCallService.CustomerApi.ApiCustomerSetAddressPostAsync(new ApiCaller.Model.CustomerAddressDTOApiRequest
+            {
+                RequestDTO = customerAddress
+            });
+
+        if (!(response?.IsSuccess ?? false))
+            return;
+
+        if (OnSuccess is null)
+            return;
+
+        await OnSuccess.Invoke();
+
+        if (ModalService is null)
+            return;
+
+        await ModalService.Hide();
+
+    }
+}

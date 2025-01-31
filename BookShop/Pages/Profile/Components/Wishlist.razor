@@ -1,5 +1,10 @@
 ﻿@page "/Profile/Wishlist"
 @using BookShop.ApiCaller.Model;
+@using BookShop.Services;
+@using BookShop.Utility;
+
+@inject UserLoginStateContainer UserLoginStateContainer;
+@inject ToastHelper ToastHelper;
 
 <div class="shop-bx shop-profile">
     <div class="shop-bx-title clearfix">
@@ -9,25 +14,25 @@
         <Table FixedHeader FixedHeaderTableHeight="300px">
              <TableHeader ThemeContrast="ThemeContrast.Light">
                  <TableRow>
-                     <TableHeaderCell></TableHeaderCell>
                      <TableHeaderCell>عنوان کتاب</TableHeaderCell>
+                     <TableHeaderCell>ناشر</TableHeaderCell>
+                     <TableHeaderCell>نویسنده</TableHeaderCell>
                      <TableHeaderCell>قیمت (ریال)</TableHeaderCell>
                      <TableHeaderCell></TableHeaderCell>
                  </TableRow>
              </TableHeader>
              <TableBody>
-                 @for (int i = 1; i <= 50; ++i)
+                 @foreach (var item in wishList)
                 {
-                    var index = i.ToString();
-
-                    <TableRow @key="@index">
-                        <TableRowHeader>@index</TableRowHeader>
-                        <TableRowCell>Column content</TableRowCell>
-                        <TableRowCell>Column content</TableRowCell>
-                        <TableRowCell>
-                            <a onclick="@DeleteWishitemButtonClick" class="ti-close"></a>
-                        </TableRowCell>
-                    </TableRow>
+                    <TableRow @key="item.Id">
+                        <TableRowCell>@(books.FirstOrDefault(x => x.Id == item.BookId)?.Title ?? string.Empty)</TableRowCell>
+                            <TableRowCell>@(books.FirstOrDefault(x => x.Id == item.BookId)?.PublisherTitle ?? string.Empty)</TableRowCell>
+                            <TableRowCell>@(string.Join(",", bookAuthors.Select(ba => ba.Name).ToList()))</TableRowCell>
+                            <TableRowCell>@(books.FirstOrDefault(x => x.Id == item.BookId)?.Price.ToString() ?? string.Empty)</TableRowCell>
+                            <TableRowCell>
+                                <a @onclick="() => DeleteWishitemButtonClick(item.Id)" class="ti-close"></a>
+                            </TableRowCell>
+                        </TableRow>
                 }
             </TableBody>
         </Table>
@@ -35,15 +40,97 @@
 </div>
 
 @code {
-    List<CustomerWishlistDTO> wishList = new List<CustomerWishlistDTO>();
+    [Inject] public IModalService? ModalService { get; set; }
 
+    List<CustomerWishlistDTO> wishList = new List<CustomerWishlistDTO>();
+    List<BookDTO> books = new List<BookDTO>();
+    List<AuthorDTO> authors = new List<AuthorDTO>();
+    List<AuthorDTO> bookAuthors = new List<AuthorDTO>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await LoadWishlist();
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
     private async Task LoadWishlist()
     {
-        
+        await ApiCallService.CustomerApi.ConfigureWebToken();
+        var customerGetResponse = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiRequest { Id = UserLoginStateContainer.UserId });
+        if (!(customerGetResponse?.IsSuccess ?? false))
+            return;
+
+        await ApiCallService.CustomerApi.ConfigureWebToken();
+        var wishlistGetResponse = await ApiCallService.CustomerApi.ApiCustomerCustomerIdWishlistGetAsync(customerGetResponse.ResponseDTO.Id);
+        if (!(wishlistGetResponse?.IsSuccess ?? false))
+            return;
+
+        wishList = wishlistGetResponse.ResponseDTOList ?? new List<CustomerWishlistDTO>();
+
+        await LoadWishlistBooks();
     }
 
-    private async Task DeleteWishitemButtonClick()
+    private async Task LoadWishlistBooks()
     {
-        
+        var bookReportResponse = await ApiCallService.BookApi.ApiBookReportPostAsync(new BookReportFilterDTOApiRequest
+            {
+                RequestDTO = new BookReportFilterDTO
+                {
+                    BookIDs = wishList.Select(x => x.BookId).ToList()
+                }
+            });
+
+        if (!(bookReportResponse?.IsSuccess ?? false))
+            return;
+
+        books = bookReportResponse.ResponseDTO?.ResultList ?? new List<BookDTO>();
+
+        await LoadBookAuthors();
+    }
+
+    private async Task LoadBookAuthors()
+    {
+        if (!authors.Any())
+        {
+            var response = await ApiCallService.AuthorApi.ApiAuthorGetGetAsync();
+            if (!(response?.IsSuccess ?? false))
+                return;
+
+            authors = response.ResponseDTOList ?? new List<AuthorDTO>();
+        }
+
+        bookAuthors = authors
+                         .Where(a => books.SelectMany(b => b.AuthorIds).Distinct().Any(ba => ba == a.Id))
+                         .ToList();
+    }
+
+    private async Task DeleteWishitemButtonClick(int id)
+    {
+        if (ModalService is null)
+            return;
+
+        var wishItem = wishList.FirstOrDefault(x => x.Id == id);
+        var bookWishItem = books.FirstOrDefault(b => b.Id == wishItem?.BookId);
+
+        await ModalService.Show<BaseDeleteItemModal>(x =>
+        {
+            x.Add(x => x.Title, $"حذف {bookWishItem?.Title ?? string.Empty} از کتاب های مورد علاقه شما");
+            x.Add(x => x.Message, "آیا مایل به حذف این کتاب از کتاب های مورد علاقه شما هستید ؟");
+            x.Add(x => x.DeletedItemId, id);
+            x.Add(x => x.OnSuccess, DeleteWishItem);
+        }, new ModalInstanceOptions
+            {
+                UseModalStructure = false,
+            });
+    }
+
+    private async Task DeleteWishItem(int wishItemId)
+    {
+        await ApiCallService.CustomerApi.ConfigureWebToken();
+        var response = await ApiCallService.CustomerApi.ApiCustomerWishlistIdDeleteAsync(wishItemId);
+        if (!(response?.IsSuccess ?? false))
+            await ToastHelper.Notify("حذف کتاب مورد نظر با خطا مواجه شد", ToastType.Error);
+        else
+            await ToastHelper.Notify("کتاب مورد نظر با موفقیت حذف شد", ToastType.Success);
     }
 }

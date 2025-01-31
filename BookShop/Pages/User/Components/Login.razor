@@ -1,5 +1,6 @@
 ﻿@page "/user/login"
 @using BookShop.ApiCaller.Api;
+@using BookShop.Services;
 @using BookShop.Utility;
 
 @inject ToastHelper ToastHelper;
@@ -44,15 +45,12 @@
 
 
 @code {
-    string username;
-    string password;
-    IUserApi _UserApi = null;
+    string? username;
+    string? password;
 
     private async void LoginButtonClick()
     {
-        _UserApi = new UserApi(Configuration["ApiBaseAddress"]);
-
-        var response = await _UserApi.ApiUserLoginPostAsync(new ApiCaller.Model.LoginRequestDTOApiRequest
+        var response = await ApiCallService.UserApi.ApiUserLoginPostAsync(new ApiCaller.Model.LoginRequestDTOApiRequest
             {
                 RequestDTO = new ApiCaller.Model.LoginRequestDTO
                 {
@@ -75,7 +73,15 @@
 
             await ToastHelper.Notify("ورود با موفقیت انجام شد", ToastType.Success);
 
-            UserLoginStateContainer.SetValue(true, response.ResponseDTO.WebToken, response.ResponseDTO.SessionIdentifier, response.ResponseDTO.UserId);
+            var customerGetResponse = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiCaller.Model.ApiRequest
+                {
+                    Id = response.ResponseDTO.UserId
+                });
+
+            if (!(customerGetResponse?.IsSuccess ?? false))
+                return;
+
+            UserLoginStateContainer.SetValue(true, response.ResponseDTO.WebToken, response.ResponseDTO.SessionIdentifier, response.ResponseDTO.UserId, customerGetResponse.ResponseDTO);
             navManager.NavigateTo("/", false);
 
         }

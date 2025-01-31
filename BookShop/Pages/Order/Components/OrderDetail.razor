@@ -1,4 +1,6 @@
 ﻿@page "/Profile/Orders/{OrderId}"
+@using BookShop.Services;
+@using BookShop.Utility;
 
 <Accordion>
     <AccordionItem Visible="true">
@@ -9,18 +11,63 @@
             </Heading>
         </AccordionHeader>
         <AccordionBody>
-
-        </AccordionBody>
-    </AccordionItem>
-    <AccordionItem>
-        <AccordionHeader>
-            <img src="images/IconBuyer.png" />
-            <Heading Size="HeadingSize.Is5">
-                <AccordionToggle>مشصات خریدار</AccordionToggle>
-            </Heading>
-        </AccordionHeader>
-        <AccordionBody>
-            
+            <div Class="row">
+                <div class="col-lg-6">
+                    <Field Margin="Margin.Is3" Horizontal>
+                        <FieldLabel ColumnSize="ColumnSize.Is5" Class="label-title">
+                           زمان ثبت :
+                        </FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <Label>@(order?.CreateDate.ToPersianCalender())</Label>
+                            </FieldBody>
+                     </Field>
+                </div>
+                <div class="col-lg-6">
+                     <Field Margin="Margin.Is3" Horizontal>
+                        <FieldLabel ColumnSize="ColumnSize.Is5" Class="label-title">
+                            وضعیت :
+                        </FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <Label>@(order?.StatusStr)</Label>
+                        </FieldBody>
+                     </Field>
+                </div>
+            </div>
+             <div Class="row">
+                 <div class="col-lg-6">
+                     <Field Margin="Margin.Is3" Horizontal>
+                        <FieldLabel ColumnSize="ColumnSize.Is5" Class="label-title">
+                            اقساطی :
+                        </FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <Label>@(order?.IsInstallment ?? false ? "بله" : "خیر")</Label>
+                        </FieldBody>
+                    </Field>
+                </div>
+                <div class="col-lg-6">
+                    <Field Margin="Margin.Is3" Horizontal>
+                        <FieldLabel ColumnSize="ColumnSize.Is5" Class="label-title">
+                            مبلغ کل :
+                        </FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <Label>@($"{order?.TotalAmount} ریال")</Label>
+                        </FieldBody>
+                     </Field>
+                 </div>
+             </div>
+            <div Class="row">
+                <div class="col-lg-12">
+                    <Field Margin="Margin.Is3" Horizontal>
+                        <FieldLabel ColumnSize="ColumnSize.Is5" Class="label-title">
+                            آدرس مقصد :
+                        </FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is5">
+                            <Label>@(customerAddress is not null ? $"استان : {customerAddress.Province} - شهر : {customerAddress.City} - خیابان : {customerAddress.Street} - کوچه : {customerAddress.Alley} - پلاک : {customerAddress.Plaque} - واحد : {customerAddress.Unit} - کدپستی : {customerAddress.PostalCode}"
+                                                                 : string.Empty)</Label>
+                        </FieldBody>
+                    </Field>
+                </div>
+            </div>
         </AccordionBody>
     </AccordionItem>
     <AccordionItem>
@@ -31,23 +78,142 @@
             </Heading>
         </AccordionHeader>
         <AccordionBody>
-            Blazorise is a component library built on top of Blazor, which is a framework from Microsoft for building interactive client-side web UIs using .NET. Blazorise provides a rich set of components that are easy to use and customizable, helping developers to build responsive and modern web applications more efficiently.
+            <Table FixedHeader FixedHeaderTableHeight="300px">
+                 <TableHeader ThemeContrast="ThemeContrast.Light">
+                     <TableRow>
+                         <TableHeaderCell>#</TableHeaderCell>
+                         <TableHeaderCell>عنوان کتاب</TableHeaderCell>
+                         <TableHeaderCell>تعداد</TableHeaderCell>
+                         <TableHeaderCell>قیمت واحد</TableHeaderCell>
+                     </TableRow>
+                 </TableHeader>
+                 <TableBody>
+                     @foreach(var book in orderBooks.Select((value, index) => (value, index)))
+                    {
+                        <TableRow @key="@book.value.Id">
+                            <TableRowHeader>@(book.index + 1)</TableRowHeader>
+                            <TableRowCell>@(book.value.Title)</TableRowCell>
+                            <TableRowCell>1</TableRowCell>
+                            <TableRowCell>@(book.value.Price.ToPriceFormat())</TableRowCell>
+                        </TableRow>
+                    }
+                </TableBody>
+            </Table>
         </AccordionBody>
     </AccordionItem>
-    <AccordionItem>
-        <AccordionHeader>
-            <img src="images/IconInstallment.png" />
-            <Heading Size="HeadingSize.Is5">
-                <AccordionToggle>اقساط</AccordionToggle>
-            </Heading>
-        </AccordionHeader>
-        <AccordionBody>
-            Blazorise is a component library built on top of Blazor, which is a framework from Microsoft for building interactive client-side web UIs using .NET. Blazorise provides a rich set of components that are easy to use and customizable, helping developers to build responsive and modern web applications more efficiently.
-        </AccordionBody>
-    </AccordionItem>
+    @if (order?.IsInstallment ?? false)
+    {
+        <AccordionItem>
+            <AccordionHeader>
+                <img src="images/IconInstallment.png" />
+                <Heading Size="HeadingSize.Is5">
+                    <AccordionToggle>اقساط</AccordionToggle>
+                </Heading>
+            </AccordionHeader>
+            <AccordionBody>
+                <Table FixedHeader FixedHeaderTableHeight="300px">
+                     <TableHeader ThemeContrast="ThemeContrast.Light">
+                         <TableRow>
+                             <TableHeaderCell>#</TableHeaderCell>
+                             <TableHeaderCell>زمان سررسید</TableHeaderCell>
+                             <TableHeaderCell>مبلغ</TableHeaderCell>
+                             <TableHeaderCell>وضعیت پرداخت</TableHeaderCell>
+                             <TableHeaderCell></TableHeaderCell>
+                         </TableRow>
+                     </TableHeader>
+                     <TableBody>
+                         @for (int i = 1; i <= 5; ++i)
+                        {
+                            var index = i.ToString();
+
+                            <TableRow @key="@index">
+                                <TableRowHeader>@index</TableRowHeader>
+                                <TableRowCell>Column content</TableRowCell>
+                                <TableRowCell>Column content</TableRowCell>
+                                <TableRowCell>Column content</TableRowCell>
+                                <TableRowCell>
+                                    <Button Color="Color.Primary">پرداخت</Button>
+                                </TableRowCell>
+                            </TableRow>
+                        }
+                    </TableBody>
+                </Table>
+            </AccordionBody>
+        </AccordionItem>
+    }
+    
 </Accordion>
+
+
 
 @code {
     [Parameter]
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
+
+    private int orderId = 0;
+    private ApiCaller.Model.OrderDTO? order;
+    private ApiCaller.Model.CustomerAddressDTO? customerAddress;
+    private List<ApiCaller.Model.BookDTO> orderBooks = new List<ApiCaller.Model.BookDTO>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await GetOrder();
+
+        await base.OnParametersSetAsync();
+    }
+
+    private async Task GetOrder()
+    {
+        var parseResult = Int32.TryParse(OrderId, out int orderId);
+        if (!parseResult)
+            return;
+
+        await ApiCallService.OrderApi.ConfigureWebToken();
+        var getOrderResponse = await ApiCallService.OrderApi.ApiOrderGetIdGetAsync(orderId);
+        if (!(getOrderResponse?.IsSuccess ?? false))
+            return;
+
+        order = getOrderResponse.ResponseDTO;
+
+        await GetCustomerAddress();
+        await GetOrderBooks();
+    }
+
+    private async Task GetOrderBooks()
+    {
+        var parseResult = Int32.TryParse(OrderId, out int orderId);
+        if (!parseResult)
+            return;
+
+        if (order is null)
+            return;
+
+        var getBooksResponse = await ApiCallService.BookApi.ApiBookReportPostAsync(new ApiCaller.Model.BookReportFilterDTOApiRequest
+            {
+                RequestDTO = new ApiCaller.Model.BookReportFilterDTO
+                {
+                    BookIDs = order.OrderBooks.Select(x => x.BookId).ToList()
+                }
+            });
+
+        if (!(getBooksResponse?.IsSuccess ?? false))
+            return;
+
+        orderBooks = getBooksResponse.ResponseDTO?.ResultList ?? new List<ApiCaller.Model.BookDTO>();
+    }
+
+    private async Task GetCustomerAddress()
+    {
+        if (order is null)
+            return;
+
+        await ApiCallService.CustomerApi.ConfigureWebToken();
+        var getCustomerAddressResponse = await ApiCallService.CustomerApi.ApiCustomerCustomerIdAddressesPostAsync(order.CustomerAddressId);
+
+        if (!(getCustomerAddressResponse?.IsSuccess ?? false))
+            return;
+
+        customerAddress = getCustomerAddressResponse.ResponseDTOList?.FirstOrDefault();
+    }
+
 }

@@ -30,10 +30,10 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        void ApiOrderChangeStatusPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>OrderDTOApiResponse</returns>
+        OrderDTOApiResponse ApiOrderChangeStatusPost(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -42,18 +42,18 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ApiOrderChangeStatusPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        ApiResponse<OrderDTOApiResponse> ApiOrderChangeStatusPostWithHttpInfo(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        void ApiOrderCreatePost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>OrderDTOApiResponse</returns>
+        OrderDTOApiResponse ApiOrderCreatePost(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -62,18 +62,18 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ApiOrderCreatePostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        ApiResponse<OrderDTOApiResponse> ApiOrderCreatePostWithHttpInfo(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        void ApiOrderGuaranteeSetPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>OrderDTOApiResponse</returns>
+        OrderDTOApiResponse ApiOrderGetCustomerOrdersCustomerIdGet(int customerId, int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -82,10 +82,130 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ApiOrderGuaranteeSetPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        ApiResponse<OrderDTOApiResponse> ApiOrderGetCustomerOrdersCustomerIdGetWithHttpInfo(int customerId, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderDTOApiResponse</returns>
+        OrderDTOApiResponse ApiOrderGetIdGet(int id, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        ApiResponse<OrderDTOApiResponse> ApiOrderGetIdGetWithHttpInfo(int id, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeFileDTOApiResponse</returns>
+        OrderGuaranteeFileDTOApiResponse ApiOrderOrderIdGetGuaranteeFileListGet(int orderId, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeFileDTOApiResponse</returns>
+        ApiResponse<OrderGuaranteeFileDTOApiResponse> ApiOrderOrderIdGetGuaranteeFileListGetWithHttpInfo(int orderId, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeDTOApiResponse</returns>
+        OrderGuaranteeDTOApiResponse ApiOrderOrderIdGetGuaranteeListGet(int orderId, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeDTOApiResponse</returns>
+        ApiResponse<OrderGuaranteeDTOApiResponse> ApiOrderOrderIdGetGuaranteeListGetWithHttpInfo(int orderId, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderDTOReportResultApiResponse</returns>
+        OrderDTOReportResultApiResponse ApiOrderReportPost(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderDTOReportResultApiResponse</returns>
+        ApiResponse<OrderDTOReportResultApiResponse> ApiOrderReportPostWithHttpInfo(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeDTOApiResponse</returns>
+        OrderGuaranteeDTOApiResponse ApiOrderSetGuaranteeFilePost(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeDTOApiResponse</returns>
+        ApiResponse<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteeFilePostWithHttpInfo(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeDTOApiResponse</returns>
+        OrderGuaranteeDTOApiResponse ApiOrderSetGuaranteePost(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeDTOApiResponse</returns>
+        ApiResponse<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteePostWithHttpInfo(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -102,11 +222,11 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ApiOrderChangeStatusPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderChangeStatusPostAsync(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -115,11 +235,11 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ApiOrderChangeStatusPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderDTOApiResponse>> ApiOrderChangeStatusPostWithHttpInfoAsync(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -127,11 +247,11 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ApiOrderCreatePostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderCreatePostAsync(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -140,11 +260,11 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ApiOrderCreatePostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderDTOApiResponse>> ApiOrderCreatePostWithHttpInfoAsync(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -152,11 +272,11 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ApiOrderGuaranteeSetPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderGetCustomerOrdersCustomerIdGetAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -165,11 +285,161 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ApiOrderGuaranteeSetPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderDTOApiResponse>> ApiOrderGetCustomerOrdersCustomerIdGetWithHttpInfoAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderGetIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderDTOApiResponse>> ApiOrderGetIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeFileDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderGuaranteeFileDTOApiResponse> ApiOrderOrderIdGetGuaranteeFileListGetAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeFileDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderGuaranteeFileDTOApiResponse>> ApiOrderOrderIdGetGuaranteeFileListGetWithHttpInfoAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderGuaranteeDTOApiResponse> ApiOrderOrderIdGetGuaranteeListGetAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderGuaranteeDTOApiResponse>> ApiOrderOrderIdGetGuaranteeListGetWithHttpInfoAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderDTOReportResultApiResponse</returns>
+        System.Threading.Tasks.Task<OrderDTOReportResultApiResponse> ApiOrderReportPostAsync(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderDTOReportResultApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderDTOReportResultApiResponse>> ApiOrderReportPostWithHttpInfoAsync(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteeFilePostAsync(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderGuaranteeDTOApiResponse>> ApiOrderSetGuaranteeFilePostWithHttpInfoAsync(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeDTOApiResponse</returns>
+        System.Threading.Tasks.Task<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteePostAsync(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OrderGuaranteeDTOApiResponse>> ApiOrderSetGuaranteePostWithHttpInfoAsync(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -294,22 +564,23 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        public void ApiOrderChangeStatusPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>OrderDTOApiResponse</returns>
+        public OrderDTOApiResponse ApiOrderChangeStatusPost(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0)
         {
-            ApiOrderChangeStatusPostWithHttpInfo(apiRequest);
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = ApiOrderChangeStatusPostWithHttpInfo(changeOrderStatusDTOApiRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public BookShop.ApiCaller.Client.ApiResponse<Object> ApiOrderChangeStatusPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> ApiOrderChangeStatusPostWithHttpInfo(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0)
         {
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
 
@@ -321,6 +592,9 @@ namespace BookShop.ApiCaller.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
             };
 
             var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -335,7 +609,7 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.Data = changeOrderStatusDTOApiRequest;
 
             localVarRequestOptions.Operation = "OrderApi.ApiOrderChangeStatusPost";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -347,7 +621,7 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/api/Order/ChangeStatus", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<OrderDTOApiResponse>("/api/Order/ChangeStatus", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ApiOrderChangeStatusPost", localVarResponse);
@@ -364,24 +638,25 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ApiOrderChangeStatusPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderChangeStatusPostAsync(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ApiOrderChangeStatusPostWithHttpInfoAsync(apiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = await ApiOrderChangeStatusPostWithHttpInfoAsync(changeOrderStatusDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="changeOrderStatusDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<Object>> ApiOrderChangeStatusPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse>> ApiOrderChangeStatusPostWithHttpInfoAsync(ChangeOrderStatusDTOApiRequest? changeOrderStatusDTOApiRequest = default(ChangeOrderStatusDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
@@ -394,6 +669,9 @@ namespace BookShop.ApiCaller.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
             };
 
             var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -408,7 +686,7 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.Data = changeOrderStatusDTOApiRequest;
 
             localVarRequestOptions.Operation = "OrderApi.ApiOrderChangeStatusPost";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -420,7 +698,7 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/api/Order/ChangeStatus", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OrderDTOApiResponse>("/api/Order/ChangeStatus", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -438,22 +716,23 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        public void ApiOrderCreatePost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>OrderDTOApiResponse</returns>
+        public OrderDTOApiResponse ApiOrderCreatePost(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0)
         {
-            ApiOrderCreatePostWithHttpInfo(apiRequest);
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = ApiOrderCreatePostWithHttpInfo(createOrderDTOApiRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public BookShop.ApiCaller.Client.ApiResponse<Object> ApiOrderCreatePostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> ApiOrderCreatePostWithHttpInfo(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0)
         {
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
 
@@ -465,6 +744,9 @@ namespace BookShop.ApiCaller.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
             };
 
             var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -479,7 +761,7 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.Data = createOrderDTOApiRequest;
 
             localVarRequestOptions.Operation = "OrderApi.ApiOrderCreatePost";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -491,7 +773,7 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/api/Order/Create", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<OrderDTOApiResponse>("/api/Order/Create", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ApiOrderCreatePost", localVarResponse);
@@ -508,24 +790,25 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ApiOrderCreatePostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderCreatePostAsync(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ApiOrderCreatePostWithHttpInfoAsync(apiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = await ApiOrderCreatePostWithHttpInfoAsync(createOrderDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="createOrderDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<Object>> ApiOrderCreatePostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse>> ApiOrderCreatePostWithHttpInfoAsync(CreateOrderDTOApiRequest? createOrderDTOApiRequest = default(CreateOrderDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
@@ -538,6 +821,9 @@ namespace BookShop.ApiCaller.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
             };
 
             var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -552,7 +838,7 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.Data = createOrderDTOApiRequest;
 
             localVarRequestOptions.Operation = "OrderApi.ApiOrderCreatePost";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -564,7 +850,7 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/api/Order/Create", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OrderDTOApiResponse>("/api/Order/Create", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -582,33 +868,34 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        public void ApiOrderGuaranteeSetPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>OrderDTOApiResponse</returns>
+        public OrderDTOApiResponse ApiOrderGetCustomerOrdersCustomerIdGet(int customerId, int operationIndex = 0)
         {
-            ApiOrderGuaranteeSetPostWithHttpInfo(apiRequest);
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = ApiOrderGetCustomerOrdersCustomerIdGetWithHttpInfo(customerId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public BookShop.ApiCaller.Client.ApiResponse<Object> ApiOrderGuaranteeSetPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> ApiOrderGetCustomerOrdersCustomerIdGetWithHttpInfo(int customerId, int operationIndex = 0)
         {
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json",
-                "text/json",
-                "application/*+json"
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
             };
 
             var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -623,9 +910,9 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.PathParameters.Add("customerId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(customerId)); // path parameter
 
-            localVarRequestOptions.Operation = "OrderApi.ApiOrderGuaranteeSetPost";
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderGetCustomerOrdersCustomerIdGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Bearer) required
@@ -635,10 +922,10 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/api/Order/GuaranteeSet", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<OrderDTOApiResponse>("/api/Order/GetCustomerOrders/{customerId}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("ApiOrderGuaranteeSetPost", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ApiOrderGetCustomerOrdersCustomerIdGet", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -652,36 +939,37 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ApiOrderGuaranteeSetPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderGetCustomerOrdersCustomerIdGetAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await ApiOrderGuaranteeSetPostWithHttpInfoAsync(apiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = await ApiOrderGetCustomerOrdersCustomerIdGetWithHttpInfoAsync(customerId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<Object>> ApiOrderGuaranteeSetPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse>> ApiOrderGetCustomerOrdersCustomerIdGetWithHttpInfoAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json", 
-                "text/json", 
-                "application/*+json"
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
             };
 
             var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -696,9 +984,9 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.PathParameters.Add("customerId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(customerId)); // path parameter
 
-            localVarRequestOptions.Operation = "OrderApi.ApiOrderGuaranteeSetPost";
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderGetCustomerOrdersCustomerIdGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Bearer) required
@@ -708,11 +996,905 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/api/Order/GuaranteeSet", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<OrderDTOApiResponse>("/api/Order/GetCustomerOrders/{customerId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("ApiOrderGuaranteeSetPost", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ApiOrderGetCustomerOrdersCustomerIdGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderDTOApiResponse</returns>
+        public OrderDTOApiResponse ApiOrderGetIdGet(int id, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = ApiOrderGetIdGetWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> ApiOrderGetIdGetWithHttpInfo(int id, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("id", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderGetIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<OrderDTOApiResponse>("/api/Order/Get/{id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderGetIdGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderDTOApiResponse> ApiOrderGetIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse> localVarResponse = await ApiOrderGetIdGetWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderDTOApiResponse>> ApiOrderGetIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("id", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderGetIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<OrderDTOApiResponse>("/api/Order/Get/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderGetIdGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeFileDTOApiResponse</returns>
+        public OrderGuaranteeFileDTOApiResponse ApiOrderOrderIdGetGuaranteeFileListGet(int orderId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeFileDTOApiResponse> localVarResponse = ApiOrderOrderIdGetGuaranteeFileListGetWithHttpInfo(orderId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeFileDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeFileDTOApiResponse> ApiOrderOrderIdGetGuaranteeFileListGetWithHttpInfo(int orderId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("orderId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(orderId)); // path parameter
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderOrderIdGetGuaranteeFileListGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<OrderGuaranteeFileDTOApiResponse>("/api/Order/{orderId}/GetGuaranteeFileList", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderOrderIdGetGuaranteeFileListGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeFileDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderGuaranteeFileDTOApiResponse> ApiOrderOrderIdGetGuaranteeFileListGetAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeFileDTOApiResponse> localVarResponse = await ApiOrderOrderIdGetGuaranteeFileListGetWithHttpInfoAsync(orderId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeFileDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeFileDTOApiResponse>> ApiOrderOrderIdGetGuaranteeFileListGetWithHttpInfoAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("orderId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(orderId)); // path parameter
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderOrderIdGetGuaranteeFileListGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<OrderGuaranteeFileDTOApiResponse>("/api/Order/{orderId}/GetGuaranteeFileList", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderOrderIdGetGuaranteeFileListGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeDTOApiResponse</returns>
+        public OrderGuaranteeDTOApiResponse ApiOrderOrderIdGetGuaranteeListGet(int orderId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> localVarResponse = ApiOrderOrderIdGetGuaranteeListGetWithHttpInfo(orderId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> ApiOrderOrderIdGetGuaranteeListGetWithHttpInfo(int orderId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("orderId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(orderId)); // path parameter
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderOrderIdGetGuaranteeListGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<OrderGuaranteeDTOApiResponse>("/api/Order/{orderId}/GetGuaranteeList", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderOrderIdGetGuaranteeListGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderGuaranteeDTOApiResponse> ApiOrderOrderIdGetGuaranteeListGetAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> localVarResponse = await ApiOrderOrderIdGetGuaranteeListGetWithHttpInfoAsync(orderId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse>> ApiOrderOrderIdGetGuaranteeListGetWithHttpInfoAsync(int orderId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("orderId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(orderId)); // path parameter
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderOrderIdGetGuaranteeListGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<OrderGuaranteeDTOApiResponse>("/api/Order/{orderId}/GetGuaranteeList", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderOrderIdGetGuaranteeListGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderDTOReportResultApiResponse</returns>
+        public OrderDTOReportResultApiResponse ApiOrderReportPost(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOReportResultApiResponse> localVarResponse = ApiOrderReportPostWithHttpInfo(orderReportFilterDTOReportFilterApiRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderDTOReportResultApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderDTOReportResultApiResponse> ApiOrderReportPostWithHttpInfo(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json",
+                "text/json",
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = orderReportFilterDTOReportFilterApiRequest;
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderReportPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<OrderDTOReportResultApiResponse>("/api/Order/Report", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderReportPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderDTOReportResultApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderDTOReportResultApiResponse> ApiOrderReportPostAsync(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderDTOReportResultApiResponse> localVarResponse = await ApiOrderReportPostWithHttpInfoAsync(orderReportFilterDTOReportFilterApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderReportFilterDTOReportFilterApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderDTOReportResultApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderDTOReportResultApiResponse>> ApiOrderReportPostWithHttpInfoAsync(OrderReportFilterDTOReportFilterApiRequest? orderReportFilterDTOReportFilterApiRequest = default(OrderReportFilterDTOReportFilterApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json", 
+                "text/json", 
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = orderReportFilterDTOReportFilterApiRequest;
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderReportPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OrderDTOReportResultApiResponse>("/api/Order/Report", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderReportPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeDTOApiResponse</returns>
+        public OrderGuaranteeDTOApiResponse ApiOrderSetGuaranteeFilePost(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> localVarResponse = ApiOrderSetGuaranteeFilePostWithHttpInfo(orderGuaranteeFileSetDTOApiRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteeFilePostWithHttpInfo(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json",
+                "text/json",
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = orderGuaranteeFileSetDTOApiRequest;
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderSetGuaranteeFilePost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<OrderGuaranteeDTOApiResponse>("/api/Order/SetGuaranteeFile", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderSetGuaranteeFilePost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteeFilePostAsync(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> localVarResponse = await ApiOrderSetGuaranteeFilePostWithHttpInfoAsync(orderGuaranteeFileSetDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeFileSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse>> ApiOrderSetGuaranteeFilePostWithHttpInfoAsync(OrderGuaranteeFileSetDTOApiRequest? orderGuaranteeFileSetDTOApiRequest = default(OrderGuaranteeFileSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json", 
+                "text/json", 
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = orderGuaranteeFileSetDTOApiRequest;
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderSetGuaranteeFilePost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OrderGuaranteeDTOApiResponse>("/api/Order/SetGuaranteeFile", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderSetGuaranteeFilePost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>OrderGuaranteeDTOApiResponse</returns>
+        public OrderGuaranteeDTOApiResponse ApiOrderSetGuaranteePost(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> localVarResponse = ApiOrderSetGuaranteePostWithHttpInfo(orderGuaranteeSetDTOApiRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of OrderGuaranteeDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteePostWithHttpInfo(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json",
+                "text/json",
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = orderGuaranteeSetDTOApiRequest;
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderSetGuaranteePost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<OrderGuaranteeDTOApiResponse>("/api/Order/SetGuarantee", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderSetGuaranteePost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of OrderGuaranteeDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<OrderGuaranteeDTOApiResponse> ApiOrderSetGuaranteePostAsync(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse> localVarResponse = await ApiOrderSetGuaranteePostWithHttpInfoAsync(orderGuaranteeSetDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="orderGuaranteeSetDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (OrderGuaranteeDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<OrderGuaranteeDTOApiResponse>> ApiOrderSetGuaranteePostWithHttpInfoAsync(OrderGuaranteeSetDTOApiRequest? orderGuaranteeSetDTOApiRequest = default(OrderGuaranteeSetDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json", 
+                "text/json", 
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = orderGuaranteeSetDTOApiRequest;
+
+            localVarRequestOptions.Operation = "OrderApi.ApiOrderSetGuaranteePost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<OrderGuaranteeDTOApiResponse>("/api/Order/SetGuarantee", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiOrderSetGuaranteePost", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

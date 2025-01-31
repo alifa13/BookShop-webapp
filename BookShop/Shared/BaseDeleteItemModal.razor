@@ -1,0 +1,46 @@
+﻿
+<ModalHeader>
+    <ModalTitle>@Title</ModalTitle>
+    <CloseButton />
+</ModalHeader>
+<ModalBody>
+    @Message
+</ModalBody>
+<ModalFooter>
+    <Button Color="Color.Secondary" Clicked="@ClickNoButton">خیر</Button>
+    <Button Color="Color.Primary" Clicked="@ClickYesButton">بله</Button>
+</ModalFooter>
+
+@code {
+    [Inject] public IModalService? ModalService { get; set; }
+
+    [Parameter]
+    public int DeletedItemId { get; set; }
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? Message { get; set; }
+    [Parameter]
+    public Func<int, Task>? OnSuccess { get; set; }
+
+    private async Task ClickYesButton()
+    {
+        if (DeletedItemId <= 0)
+            return;
+
+        if (ModalService is null || OnSuccess is null)
+            return;
+
+        await OnSuccess.Invoke(DeletedItemId);
+
+        await ModalService.Hide();
+    }
+
+    private async Task ClickNoButton()
+    {
+        if (ModalService is null)
+            return;
+
+        await ModalService.Hide();
+    }
+}

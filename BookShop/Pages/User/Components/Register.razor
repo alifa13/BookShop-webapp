@@ -2,6 +2,7 @@
 @layout MainLayout
 
 @using BookShop.ApiCaller.Api;
+@using BookShop.Services;
 @using BookShop.Utility;
 
 @inject ToastHelper ToastHelper;
@@ -20,86 +21,137 @@
                 <div class="login-area">
                     <h4 class="text-secondary">ثبت نام</h4>
                     <p class="font-weight-600">اگر حساب کاربری ندارید ، لطفا ثبت نام کنید</p>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                نام
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.FirstName)" Role="TextRole.Text" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                نام خانوادگی
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.LastName)" Role="TextRole.Text" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                شماره همراه *
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Mobile)" Placeholder="09123456789" Pattern="[0-9]{11}" Role="TextRole.Text" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                تلفن ثابت *
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Tel)" Placeholder="02511111111"[0-9]{11}" Role="TextRole.Text" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                پست الکترونیک
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Email)" Role="TextRole.Email" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                کد ملی
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.NationalCode)" Pattern="[0-9]{10}" Role="TextRole.Text" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                معرف
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Customer.Contact)" Role="TextRole.Text" />
-                            </FieldBody>
-                        </Field>
-                    </div>
-                    <div class="mb-4">
-                        <Field>
-                            <FieldLabel Class="label-title">
-                                رمز عبور *
-                            </FieldLabel>
-                            <FieldBody>
-                                <TextEdit @bind-Text="@(customerRegisterDTO.Password)" Placeholder="********" Role="TextRole.Password" autocomplete="new-password" />
-                            </FieldBody>
-                        </Field>
-                    </div>
+                    <Validations @ref="@validations" Mode="ValidationMode.Auto" Model="@customerRegisterDTO" HandlerType="typeof(FluentValidationHandler)">
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        نام
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.FirstName)" Role="TextRole.Text">
+                                            <Feedback>
+                                                <ValidationError>نام را پر کنید</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+                        </div>
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        نام خانوادگی
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.LastName)" Role="TextRole.Text">
+                                            <Feedback>
+                                                <ValidationError>نام خانوادگی را پر کنید</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+
+                        </div>
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        شماره همراه *
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.Mobile)" Placeholder="09123456789" Pattern="[0-9]{11}" Role="TextRole.Text">
+                                            <Feedback>
+                                                <ValidationError>شماره تلفن همراه وارد شده صحیح نیست</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+
+                        </div>
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        تلفن ثابت *
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.Tel)" Placeholder="02511111111" Pattern="[0-9]{11}" Role="TextRole.Text">
+                                            <Feedback>
+                                                <ValidationError>شماره تلفن ثابت وارد شده صحیح نیست</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+
+                        </div>
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        پست الکترونیک
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.Email)" Role="TextRole.Email">
+                                            <Feedback>
+                                                <ValidationError>پست الکترونیک وارد شده صحیح نیست</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+
+                        </div>
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        کد ملی
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.NationalCode)" Pattern="[0-9]{10}" Role="TextRole.Text">
+                                            <Feedback>
+                                                <ValidationError>کد ملی صحیح وارد شده صحیح نیست</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+
+                        </div>
+                        <div class="mb-4">
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    معرف
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.Contact)" Placeholder="مثلا نام شخص یا سازمان" Role="TextRole.Text" />
+                                </FieldBody>
+                            </Field>
+                        </div>
+                        <div class="mb-4">
+                            <Validation>
+                                <Field>
+                                    <FieldLabel Class="label-title">
+                                        رمز عبور *
+                                    </FieldLabel>
+                                    <FieldBody>
+                                        <TextEdit @bind-Text="@(customerRegisterDTO.Password)" Placeholder="********" Role="TextRole.Password" autocomplete="new-password">
+                                            <Feedback>
+                                                <ValidationError>رمز عبور بیشتر از 5 کاراکتر باشد</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
+
+                        </div>
+                    </Validations>
+
                     <div class="text-left">
                         <Button Clicked="RegisterButtonClick" class="btn btn-primary btnhover w-100 me-2">ثبت نام</Button>
                     </div>
@@ -111,17 +163,19 @@
 </section>
 <!-- contact area End-->
 @code {
-    ICustomerApi _CustomerApi = null;
-    ApiCaller.Model.CustomerRegisterDTO customerRegisterDTO = new ApiCaller.Model.CustomerRegisterDTO()
-        {
-            Customer = new ApiCaller.Model.CustomerDTO()
-        };
+    Validations? validations;
+    ApiCaller.Model.CustomerRegisterDTO customerRegisterDTO = new ApiCaller.Model.CustomerRegisterDTO();
 
     private async void RegisterButtonClick()
     {
-        _CustomerApi = new CustomerApi(Configuration["ApiBaseAddress"]);
+        if (validations is null)
+            return;
 
-        var response = await _CustomerApi.ApiCustomerRegisterPostAsync(new ApiCaller.Model.CustomerRegisterDTOApiRequest
+        bool isValid = await validations.ValidateAll();
+        if (!isValid)
+            return;
+
+        var response = await ApiCallService.CustomerApi.ApiCustomerRegisterPostAsync(new ApiCaller.Model.CustomerRegisterDTOApiRequest
             {
                 RequestDTO = customerRegisterDTO
             });

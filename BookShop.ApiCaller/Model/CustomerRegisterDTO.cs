@@ -36,13 +36,25 @@ namespace BookShop.ApiCaller.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="message">message.</param>
-        /// <param name="customer">customer.</param>
+        /// <param name="firstName">firstName.</param>
+        /// <param name="lastName">lastName.</param>
+        /// <param name="mobile">mobile.</param>
+        /// <param name="tel">tel.</param>
+        /// <param name="email">email.</param>
+        /// <param name="nationalCode">nationalCode.</param>
+        /// <param name="contact">contact.</param>
         /// <param name="password">password.</param>
-        public CustomerRegisterDTO(int id = default(int), string message = default(string), CustomerDTO customer = default(CustomerDTO), string password = default(string))
+        public CustomerRegisterDTO(int id = default(int), string message = default(string), string firstName = default(string), string lastName = default(string), string mobile = default(string), string tel = default(string), string email = default(string), string nationalCode = default(string), string contact = default(string), string password = default(string))
         {
             this.Id = id;
             this.Message = message;
-            this.Customer = customer;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Mobile = mobile;
+            this.Tel = tel;
+            this.Email = email;
+            this.NationalCode = nationalCode;
+            this.Contact = contact;
             this.Password = password;
         }
 
@@ -59,10 +71,46 @@ namespace BookShop.ApiCaller.Model
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets Customer
+        /// Gets or Sets FirstName
         /// </summary>
-        [DataMember(Name = "customer", EmitDefaultValue = false)]
-        public CustomerDTO Customer { get; set; }
+        [DataMember(Name = "firstName", EmitDefaultValue = true)]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LastName
+        /// </summary>
+        [DataMember(Name = "lastName", EmitDefaultValue = true)]
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Mobile
+        /// </summary>
+        [DataMember(Name = "mobile", EmitDefaultValue = true)]
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Tel
+        /// </summary>
+        [DataMember(Name = "tel", EmitDefaultValue = true)]
+        public string Tel { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Email
+        /// </summary>
+        [DataMember(Name = "email", EmitDefaultValue = true)]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or Sets NationalCode
+        /// </summary>
+        [DataMember(Name = "nationalCode", EmitDefaultValue = true)]
+        public string NationalCode { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Contact
+        /// </summary>
+        [DataMember(Name = "contact", EmitDefaultValue = true)]
+        public string Contact { get; set; }
 
         /// <summary>
         /// Gets or Sets Password
@@ -80,7 +128,13 @@ namespace BookShop.ApiCaller.Model
             sb.Append("class CustomerRegisterDTO {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Customer: ").Append(Customer).Append("\n");
+            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("  Mobile: ").Append(Mobile).Append("\n");
+            sb.Append("  Tel: ").Append(Tel).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  NationalCode: ").Append(NationalCode).Append("\n");
+            sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

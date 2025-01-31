@@ -1,8 +1,14 @@
 ﻿@page "/Checkout"
+@using BookShop.ApiCaller.Model;
 @using BookShop.Services;
+@using BookShop.Shared.Models;
 @using BookShop.Utility;
 
 @inject CookieHelper CookieHelper;
+@inject ShopCartService ShopCartService;
+@inject UserLoginStateContainer UserLoginStateContainer;
+@inject ToastHelper ToastHelper;
+@inject NavigationManager navManager;
 
 <div class="page-content">
     <!-- inner page banner -->
@@ -16,17 +22,17 @@
                 <div class="row">
                     <div class="widget">
                         <h4 class="widget-title">آدرس مقصد</h4>
-                        <RadioGroup TValue="int" Name="CustomerAddresses">
+                        <RadioGroup @bind-CheckedValue="customerAddressId" TValue="int" Name="CustomerAddresses">
                             @if (customerAddress?.Any() ?? false)
                             {
                                 @foreach (var address in customerAddress.Select((value, index) => new { index, value }))
                                 {
-                                    <Radio Value="address.index + 1">
+                                    <Radio Value="address.value.Id">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="content-box style-1 m-b30">
                                                 <div class="dz-info">
                                                     <h4 class="title">@($"آدرس {address.index + 1}")</h4>
-                                                    <p>@($"{address.value.Province} - {address.value.City} - {address.value.Street} - {address.value.Alley} - {address.value.Plaque} - {address.value.Unit}")</p>
+                                                    <p>@($"استان : {address.value.Province} - شهر : {address.value.City} - خیابان : {address.value.Street} - کوچه : {address.value.Alley} - پلاک : {address.value.Plaque} - واحد : {address.value.Unit}")</p>
                                                     <p>@($"کد پستی : {address.value.PostalCode}")</p>
                                                 </div>
                                             </div>
@@ -36,7 +42,7 @@
                             }
                             else
                             {
-                                <Button Margin="Margin.Is3" class="btn btn-primary btnhover me-5">ثبت آدرس جدید</Button>
+                                <Button Clicked="() => ClickCustomerAddressSetButton()" Margin="Margin.Is3" class="btn btn-primary btnhover me-5">ثبت آدرس جدید</Button>
                             }
                         </RadioGroup>
                     </div>
@@ -50,49 +56,31 @@
                         <table class="table-bordered check-tbl">
                             <thead class="text-center">
                                 <tr>
-                                    <th>IMAGE</th>
-                                    <th>PRODUCT NAME</th>
-                                    <th>Count</th>
-                                    <th>TOTAL</th>
+                                    <th>تصویر</th>
+                                    <th>عنوان</th>
+                                    <th>مبلغ</th>
+                                    <th>تعداد</th>
+                                    <th>جمع</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="product-item-img"><img src="images/books/grid/book3.jpg" alt=""></td>
-                                    <td class="product-item-name">Prduct Item 5</td>
-                                    <td class="product-price">5</td>
-                                    <td class="product-price">$28.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="product-item-img"><img src="images/books/grid/book2.jpg" alt=""></td>
-                                    <td class="product-item-name">Prduct Item 4</td>
-                                    <td class="product-price">5</td>
-                                    <td class="product-price">$36.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="product-item-img"><img src="images/books/grid/book4.jpg" alt=""></td>
-                                    <td class="product-item-name">Prduct Item 3</td>
-                                    <td class="product-price">5</td>
-                                    <td class="product-price">$28.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="product-item-img"><img src="images/books/grid/book5.jpg" alt=""></td>
-                                    <td class="product-item-name">Prduct Item 2</td>
-                                    <td class="product-price">5</td>
-                                    <td class="product-price">$36.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="product-item-img"><img src="images/books/grid/book1.jpg" alt=""></td>
-                                    <td class="product-item-name">Prduct Item 1</td>
-                                    <td class="product-price">5</td>
-                                    <td class="product-price">$28.00</td>
-                                </tr>
+                                @foreach (var item in shopCartItems)
+                                {
+                                    <tr>
+                                        <td class="product-item-img"><img src="images/books/grid/book3.jpg" alt=""></td>
+                                        <td class="product-item-name">@(item.BookTitle)</td>
+                                        <td class="product-price">@(item.BookPrice.ToPriceFormat())</td>
+                                        <td class="product-item-name">@(item.Count)</td>
+                                        <td class="product-item-totle">@(item.BookTotalPrice.ToPriceFormat()) ریال</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <h4 class="widget-title">روش پرداخت</h4>
+
                     <Tabs SelectedTab="@selectedTab" SelectedTabChanged="@OnSelectedTabChanged" FullWidth="true">
                         <Items>
                             <Tab Name="Cash">نقدی</Tab>
@@ -100,28 +88,33 @@
                         </Items>
                         <Content>
                             <TabPanel Name="Cash">
-                                <Field Margin="Margin.Is3" Horizontal>
-                                    <FieldLabel ColumnSize="ColumnSize.Is4" Class="label-title">
-                                        مبلغ قابل پرداخت
-                                    </FieldLabel>
-                                    <FieldBody ColumnSize="ColumnSize.Is8">
-                                        <TextEdit Disabled @bind-Text="@totalPrice" />
-                                     </FieldBody>
-                                 </Field>
+                                <Radio TValue="string" Value="@("Cash")" Group="PaymentMethod">
+                                    <Field Margin="Margin.Is3" Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.Is4" Class="label-title">
+                                            مبلغ قابل پرداخت
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is8">
+                                            <TextEdit Disabled @bind-Text="cartTotalPrice" />
+                                         </FieldBody>
+                                     </Field>
+                                 </Radio>
                              </TabPanel>
                              <TabPanel Name="Installment">
-                                 <Field Margin="Margin.Is3" Horizontal>
-                                    <FieldLabel ColumnSize="ColumnSize.Is4" Class="label-title">
-                                        تعداد اقساط
-                                    </FieldLabel>
-                                    <FieldBody ColumnSize="ColumnSize.Is8">
-                                        <TextEdit @bind-Text="@installmentCount" MaskType="MaskType.RegEx" EditMask="^(\d+(.\d{0,2})?|.?\d{1,2})$" />
-                                    </FieldBody>
-                                </Field>
+                                 <Radio @bind-Checked="isInstallment" TValue="string" Value="@("Installment")" Group="PaymentMethod">
+                                     <Field Margin="Margin.Is3" Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.Is4" Class="label-title">
+                                            تعداد اقساط
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is8">
+                                            <TextEdit @bind-Text="@installmentCount" MaskType="MaskType.RegEx" EditMask="^(\d+(.\d{0,2})?|.?\d{1,2})$" />
+                                        </FieldBody>
+                                    </Field>
+                                </Radio>
                             </TabPanel>
                         </Content>
                     </Tabs>
-                    <Button Margin="Margin.Is3" class="btn btn-primary btnhover me-3">ثبت سفارش</Button>
+
+                    <Button Clicked="() => SetOrderButtonClick()" Margin="Margin.Is3" class="btn btn-primary btnhover me-3">ثبت سفارش</Button>
                 </div>
             </div>
         </div>
@@ -130,10 +123,16 @@
     <!-- contact area End-->
 </div>
 @code {
+    [Inject] public IModalService? ModalService { get; set; }
+
     private string selectedTab = "Cash";
     private string installmentCount = "0";
-    private string totalPrice = "4500000 ریال";
+    private string cartTotalPrice = "";
+    private bool isInstallment = false;
+    private int customerAddressId;
+    private List<BookDTO> books = new List<BookDTO>();
     private List<ApiCaller.Model.CustomerAddressDTO>? customerAddress = new List<ApiCaller.Model.CustomerAddressDTO>();
+    private List<ShopCartItemModel> shopCartItems = new List<ShopCartItemModel>();
 
     private Task OnSelectedTabChanged(string name)
     {
@@ -142,26 +141,112 @@
         return Task.CompletedTask;
     }
 
-    private async Task LoadCustomerAddress()
+    protected override async Task OnParametersSetAsync()
     {
-        var userId = Int32.Parse(await CookieHelper.GetCookie("User"));
+        await LoadCart();
+        await LoadCustomerAddress();
 
-        var getCustomerResponse = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiCaller.Model.ApiRequest
+        await base.OnParametersSetAsync();
+    }
+
+    private async Task LoadCart()
+    {
+        var cartItems = await ShopCartService.GetCartItems();
+        var bookIds = cartItems.Keys?.ToList() ?? new List<int>();
+
+        var bookReportResponse = await ApiCallService.BookApi.ApiBookReportPostAsync(new BookReportFilterDTOApiRequest
             {
-                Id = userId
+                RequestDTO = new BookReportFilterDTO
+                {
+                    BookIDs = bookIds
+                }
             });
 
-        if (!(getCustomerResponse?.IsSuccess ?? false) == true)
+        if (!bookReportResponse?.IsSuccess ?? true)
             return;
 
-        var getAddressResponse = await ApiCallService.CustomerApi.ApiCustomerAddressPostAsync(new ApiCaller.Model.ApiRequest
-            {
-                Id = getCustomerResponse.ResponseDTO.Id
-            });
+        books = bookReportResponse!.ResponseDTO.ResultList;
 
-        if (!(getAddressResponse?.IsSuccess ?? false) == true)
+        shopCartItems = books?.Select(book => new ShopCartItemModel
+            {
+                BookID = book.Id,
+                Count = cartItems.GetValueOrDefault(book.Id),
+                BookPrice = (decimal)book.Price,
+                BookTitle = book.Title
+            })?.ToList() ?? new List<ShopCartItemModel>();
+
+        cartTotalPrice = shopCartItems.Sum(x => x.BookTotalPrice).ToPriceFormat();
+    }
+
+    private async Task LoadCustomerAddress()
+    {
+        var customer = UserLoginStateContainer.Customer;
+        if (customer is null)
+            return;
+
+        await ApiCallService.CustomerApi.ConfigureWebToken();
+
+        var getAddressResponse = await ApiCallService.CustomerApi.ApiCustomerCustomerIdAddressesPostAsync(customer.Id);
+
+        if (!(getAddressResponse?.IsSuccess ?? false))
             return;
 
         customerAddress = getAddressResponse.ResponseDTOList;
+    }
+
+    private async Task SetOrderButtonClick()
+    {
+        var customerId = UserLoginStateContainer.Customer?.Id ?? 0;
+        if (customerId <= 0)
+            return;
+
+        await ApiCallService.OrderApi.ConfigureWebToken();
+        var response = await ApiCallService.OrderApi.ApiOrderCreatePostAsync(new CreateOrderDTOApiRequest
+            {
+                RequestDTO = new CreateOrderDTO
+                {
+                    CustomerId = customerId,
+                    CustomerAddressId = customerAddressId,
+                    InstallmentCount = Int32.Parse(installmentCount),
+                    IsInstallment = isInstallment,
+                    OrderBooks = shopCartItems.Select(x => new OrderBookDTO
+                    {
+                        BookId = x.BookID,
+                        Count = x.Count
+                    }).ToList()
+                }
+            });
+
+        if (!(response?.IsSuccess ?? false))
+        {
+            await ToastHelper.Notify(response?.Message ?? "ثبت سفارش با خطا مواجه شد", ToastType.Error);
+            return;
+        }
+
+        await ToastHelper.Notify("ثبت سفارش با موفقیت انجام شد", ToastType.Success);
+
+        await ShopCartService.DeleteCartItems();
+        navManager.NavigateTo("/Profile/Orders", false);
+    }
+
+    private async Task ClickCustomerAddressSetButton()
+    {
+        if (ModalService is null)
+            return;
+
+        await ModalService.Show<CustomerAddressSetModal>(x =>
+        {
+            x.Add(x => x.OnSuccess, DoAfterCustomerAddressSet);
+        }, new ModalInstanceOptions
+        {
+            UseModalStructure = false,
+            Size = ModalSize.Large
+        });
+    }
+
+    private async Task DoAfterCustomerAddressSet()
+    {
+        await LoadCustomerAddress();
+        StateHasChanged();
     }
 }

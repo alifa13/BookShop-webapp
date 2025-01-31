@@ -1,0 +1,57 @@
+﻿@using BookShop.Shared.Models;
+@using BookShop.Utility;
+
+@inject ToastHelper ToastHelper;
+
+<Card>
+    <CardImage ObjectFit="ObjectFit.Cover" Source="@(string.IsNullOrEmpty(imageContent) ? "images/ImgGuarantee.png" : imageContent)" Alt="@(Title)"></CardImage>
+    <CardBody>
+        <CardTitle>عنوان : @(Title)</CardTitle>
+            <CardText>
+                شیوه دریافت : @(ReceiptMethod)
+        </CardText>
+        <FileEdit Placeholder="تصویر ضمانت نامه خود را بارگذاری کنید" Filter="image/jpeg, image/png, image/jpg" Changed="@OnChanged" />
+    </CardBody>
+</Card>
+
+@code {
+    [Parameter]
+    public int OrderGuaranteeId { get; set; }
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? ReceiptMethod { get; set; }
+    [Parameter]
+    public EventCallback<GuaranteeFileChangeModel> OnFileSelected { get; set; }
+
+    private string? imageContent = "";
+
+
+    private async Task OnChanged(FileChangedEventArgs e)
+    {
+        try
+        {
+            var file = e.Files.FirstOrDefault();
+            if (file is null)
+                return;
+
+            var buffer = new byte[file.Size];
+            await file.OpenReadStream(file.Size).ReadAsync(buffer);
+
+            var base64Str = Convert.ToBase64String(buffer);
+
+            await OnFileSelected.InvokeAsync(new GuaranteeFileChangeModel
+                {
+                    Base64Str = base64Str,
+                    OrderGuaranteeId = OrderGuaranteeId
+                });
+
+            imageContent = $"data:{file.UploadUrl};base64,{Convert.ToBase64String(buffer)}";
+
+        }
+        catch (Exception ex)
+        {
+            await ToastHelper.Notify(ex.Message ?? "بارگذاری تصویر با خطا مواجه شد", ToastType.Error);
+        }
+    }
+}

@@ -1,0 +1,76 @@
+﻿@using BookShop.Services;
+@using BookShop.Shared.Models;
+@using BookShop.Utility;
+
+@inject ToastHelper ToastHelper;
+
+<ModalHeader>
+    <ModalTitle>ضمانت نامه های سفارش</ModalTitle>
+</ModalHeader>
+<ModalBody>
+    <CardDeck>
+        @foreach (var item in orderGuarantees)
+        {
+            <OrderGuaranteeFileEditCart 
+                Title="@(guarantees.FirstOrDefault(x => x.Id == item.GuaranteeId)?.Title ?? string.Empty)" 
+                ReceiptMethod="@(item.ReceiptMethodStr)" 
+                OrderGuaranteeId="@(item.Id)" 
+                OnFileSelected="OnFileSelected" />
+
+        }
+    </CardDeck>
+</ModalBody>
+
+@code {
+    [Parameter]
+    public int OrderId { get; set; }
+
+    private List<ApiCaller.Model.OrderGuaranteeDTO> orderGuarantees = new List<ApiCaller.Model.OrderGuaranteeDTO>();
+    private List<ApiCaller.Model.GuaranteeDTO> guarantees = new List<ApiCaller.Model.GuaranteeDTO>();
+    private List<ApiCaller.Model.OrderGuaranteeFileSetDTO> guaranteeFiles = new List<ApiCaller.Model.OrderGuaranteeFileSetDTO>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await GetOrderGuarantees();
+        await base.OnParametersSetAsync();
+    }
+
+    private async Task GetOrderGuarantees()
+    {
+        await ApiCallService.OrderApi.ConfigureWebToken();
+        var response = await ApiCallService.OrderApi.ApiOrderOrderIdGetGuaranteeListGetAsync(OrderId);
+        if (!(response?.IsSuccess ?? false))
+            return;
+
+        orderGuarantees = response.ResponseDTOList ?? new List<ApiCaller.Model.OrderGuaranteeDTO>();
+
+        await ApiCallService.GuaranteeApi.ConfigureWebToken();
+        var getGuaranteesResponse = await ApiCallService.GuaranteeApi.ApiGuaranteeGetGetAsync();
+        if (!(getGuaranteesResponse?.IsSuccess ?? false))
+            return;
+
+        guarantees = getGuaranteesResponse.ResponseDTOList ?? new List<ApiCaller.Model.GuaranteeDTO>();
+    }
+
+    private async void OnFileSelected(GuaranteeFileChangeModel model) 
+    {
+        await ApiCallService.OrderApi.ConfigureWebToken();
+        var response = await ApiCallService.OrderApi.ApiOrderSetGuaranteeFilePostAsync(new ApiCaller.Model.OrderGuaranteeFileSetDTOApiRequest
+            {
+                RequestDTO = new ApiCaller.Model.OrderGuaranteeFileSetDTO
+                {
+                    Base64Image = model.Base64Str,
+                    Id = model.OrderGuaranteeId
+                }
+            });
+
+        if (!(response?.IsSuccess ?? false))
+        {
+            await ToastHelper.Notify(response?.Message ?? "ثبت تصویر ضمانت نامه با خطا مواجه شد", ToastType.Error);
+            return;
+        }
+
+        await ToastHelper.Notify("ثبت تصویر ضمانت نامه با موفقیت انجام شد", ToastType.Success);
+    }
+
+}

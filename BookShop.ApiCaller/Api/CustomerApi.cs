@@ -30,26 +30,6 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CustomerAddressDTOApiResponse</returns>
-        CustomerAddressDTOApiResponse ApiCustomerAddressPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CustomerAddressDTOApiResponse</returns>
-        ApiResponse<CustomerAddressDTOApiResponse> ApiCustomerAddressPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="customerDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CustomerDTOApiResponse</returns>
@@ -66,6 +46,46 @@ namespace BookShop.ApiCaller.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CustomerDTOApiResponse</returns>
         ApiResponse<CustomerDTOApiResponse> ApiCustomerBlacklistPostWithHttpInfo(CustomerDTOApiRequest? customerDTOApiRequest = default(CustomerDTOApiRequest?), int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerAddressDTOApiResponse</returns>
+        CustomerAddressDTOApiResponse ApiCustomerCustomerIdAddressesPost(int customerId, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerAddressDTOApiResponse</returns>
+        ApiResponse<CustomerAddressDTOApiResponse> ApiCustomerCustomerIdAddressesPostWithHttpInfo(int customerId, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerWishlistDTOApiResponse</returns>
+        CustomerWishlistDTOApiResponse ApiCustomerCustomerIdWishlistGet(int customerId, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
+        ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerCustomerIdWishlistGetWithHttpInfo(int customerId, int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -110,10 +130,10 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CustomerWishlistDTOApiResponse</returns>
-        CustomerWishlistDTOApiResponse ApiCustomerWishlistPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        /// <returns>CustomerDTOApiResponse</returns>
+        CustomerDTOApiResponse ApiCustomerReportPost(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -122,10 +142,70 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerDTOApiResponse</returns>
+        ApiResponse<CustomerDTOApiResponse> ApiCustomerReportPostWithHttpInfo(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerAddressDTOApiResponse</returns>
+        CustomerAddressDTOApiResponse ApiCustomerSetAddressPost(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerAddressDTOApiResponse</returns>
+        ApiResponse<CustomerAddressDTOApiResponse> ApiCustomerSetAddressPostWithHttpInfo(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerWishlistDTOApiResponse</returns>
+        CustomerWishlistDTOApiResponse ApiCustomerWishlistIdDelete(int id, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
-        ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0);
+        ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerWishlistIdDeleteWithHttpInfo(int id, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerWishlistDTOApiResponse</returns>
+        CustomerWishlistDTOApiResponse ApiCustomerWishlistPost(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
+        ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostWithHttpInfo(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -135,31 +215,6 @@ namespace BookShop.ApiCaller.Api
     public interface ICustomerApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CustomerAddressDTOApiResponse</returns>
-        System.Threading.Tasks.Task<CustomerAddressDTOApiResponse> ApiCustomerAddressPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CustomerAddressDTOApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CustomerAddressDTOApiResponse>> ApiCustomerAddressPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -185,6 +240,56 @@ namespace BookShop.ApiCaller.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CustomerDTOApiResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CustomerDTOApiResponse>> ApiCustomerBlacklistPostWithHttpInfoAsync(CustomerDTOApiRequest? customerDTOApiRequest = default(CustomerDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerAddressDTOApiResponse</returns>
+        System.Threading.Tasks.Task<CustomerAddressDTOApiResponse> ApiCustomerCustomerIdAddressesPostAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerAddressDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CustomerAddressDTOApiResponse>> ApiCustomerCustomerIdAddressesPostWithHttpInfoAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
+        System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerCustomerIdWishlistGetAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerCustomerIdWishlistGetWithHttpInfoAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -242,11 +347,11 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
-        System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of CustomerDTOApiResponse</returns>
+        System.Threading.Tasks.Task<CustomerDTOApiResponse> ApiCustomerReportPostAsync(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -255,11 +360,86 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </remarks>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CustomerDTOApiResponse>> ApiCustomerReportPostWithHttpInfoAsync(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerAddressDTOApiResponse</returns>
+        System.Threading.Tasks.Task<CustomerAddressDTOApiResponse> ApiCustomerSetAddressPostAsync(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerAddressDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CustomerAddressDTOApiResponse>> ApiCustomerSetAddressPostWithHttpInfoAsync(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
+        System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerWishlistIdDeleteAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerWishlistPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerWishlistIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
+        System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostAsync(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerWishlistPostWithHttpInfoAsync(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -378,158 +558,6 @@ namespace BookShop.ApiCaller.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CustomerAddressDTOApiResponse</returns>
-        public CustomerAddressDTOApiResponse ApiCustomerAddressPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
-        {
-            BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> localVarResponse = ApiCustomerAddressPostWithHttpInfo(apiRequest);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CustomerAddressDTOApiResponse</returns>
-        public BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> ApiCustomerAddressPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
-        {
-            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "text/json",
-                "application/*+json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "text/plain",
-                "application/json",
-                "text/json"
-            };
-
-            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.Data = apiRequest;
-
-            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerAddressPost";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<CustomerAddressDTOApiResponse>("/api/Customer/Address", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ApiCustomerAddressPost", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CustomerAddressDTOApiResponse</returns>
-        public async System.Threading.Tasks.Task<CustomerAddressDTOApiResponse> ApiCustomerAddressPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-        {
-            BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> localVarResponse = await ApiCustomerAddressPostWithHttpInfoAsync(apiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CustomerAddressDTOApiResponse)</returns>
-        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse>> ApiCustomerAddressPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-        {
-
-            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "text/json", 
-                "application/*+json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "text/plain",
-                "application/json",
-                "text/json"
-            };
-
-            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.Data = apiRequest;
-
-            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerAddressPost";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CustomerAddressDTOApiResponse>("/api/Customer/Address", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ApiCustomerAddressPost", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
         }
 
         /// <summary>
@@ -675,6 +703,298 @@ namespace BookShop.ApiCaller.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ApiCustomerBlacklistPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerAddressDTOApiResponse</returns>
+        public CustomerAddressDTOApiResponse ApiCustomerCustomerIdAddressesPost(int customerId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> localVarResponse = ApiCustomerCustomerIdAddressesPostWithHttpInfo(customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerAddressDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> ApiCustomerCustomerIdAddressesPostWithHttpInfo(int customerId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("customerId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(customerId)); // path parameter
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerCustomerIdAddressesPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CustomerAddressDTOApiResponse>("/api/Customer/{customerId}/Addresses", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerCustomerIdAddressesPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerAddressDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<CustomerAddressDTOApiResponse> ApiCustomerCustomerIdAddressesPostAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> localVarResponse = await ApiCustomerCustomerIdAddressesPostWithHttpInfoAsync(customerId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerAddressDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse>> ApiCustomerCustomerIdAddressesPostWithHttpInfoAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("customerId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(customerId)); // path parameter
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerCustomerIdAddressesPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CustomerAddressDTOApiResponse>("/api/Customer/{customerId}/Addresses", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerCustomerIdAddressesPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerWishlistDTOApiResponse</returns>
+        public CustomerWishlistDTOApiResponse ApiCustomerCustomerIdWishlistGet(int customerId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = ApiCustomerCustomerIdWishlistGetWithHttpInfo(customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerCustomerIdWishlistGetWithHttpInfo(int customerId, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("customerId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(customerId)); // path parameter
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerCustomerIdWishlistGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CustomerWishlistDTOApiResponse>("/api/Customer/{customerId}/Wishlist", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerCustomerIdWishlistGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerCustomerIdWishlistGetAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = await ApiCustomerCustomerIdWishlistGetWithHttpInfoAsync(customerId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerCustomerIdWishlistGetWithHttpInfoAsync(int customerId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("customerId", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(customerId)); // path parameter
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerCustomerIdWishlistGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CustomerWishlistDTOApiResponse>("/api/Customer/{customerId}/Wishlist", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerCustomerIdWishlistGet", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -992,12 +1312,12 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CustomerWishlistDTOApiResponse</returns>
-        public CustomerWishlistDTOApiResponse ApiCustomerWishlistPost(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>CustomerDTOApiResponse</returns>
+        public CustomerDTOApiResponse ApiCustomerReportPost(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0)
         {
-            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = ApiCustomerWishlistPostWithHttpInfo(apiRequest);
+            BookShop.ApiCaller.Client.ApiResponse<CustomerDTOApiResponse> localVarResponse = ApiCustomerReportPostWithHttpInfo(customerReportFilterDTOApiRequest);
             return localVarResponse.Data;
         }
 
@@ -1005,10 +1325,10 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
-        public BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostWithHttpInfo(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0)
+        /// <returns>ApiResponse of CustomerDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<CustomerDTOApiResponse> ApiCustomerReportPostWithHttpInfo(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0)
         {
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
 
@@ -1037,9 +1357,9 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.Data = customerReportFilterDTOApiRequest;
 
-            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerWishlistPost";
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerReportPost";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Bearer) required
@@ -1049,10 +1369,10 @@ namespace BookShop.ApiCaller.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CustomerWishlistDTOApiResponse>("/api/Customer/Wishlist", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CustomerDTOApiResponse>("/api/Customer/Report", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("ApiCustomerWishlistPost", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ApiCustomerReportPost", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1066,13 +1386,13 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
-        public async System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of CustomerDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<CustomerDTOApiResponse> ApiCustomerReportPostAsync(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = await ApiCustomerWishlistPostWithHttpInfoAsync(apiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            BookShop.ApiCaller.Client.ApiResponse<CustomerDTOApiResponse> localVarResponse = await ApiCustomerReportPostWithHttpInfoAsync(customerReportFilterDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1080,11 +1400,11 @@ namespace BookShop.ApiCaller.Api
         ///  
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiRequest"> (optional)</param>
+        /// <param name="customerReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
-        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerWishlistPostWithHttpInfoAsync(ApiRequest? apiRequest = default(ApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (CustomerDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerDTOApiResponse>> ApiCustomerReportPostWithHttpInfoAsync(CustomerReportFilterDTOApiRequest? customerReportFilterDTOApiRequest = default(CustomerReportFilterDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
@@ -1114,7 +1434,457 @@ namespace BookShop.ApiCaller.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiRequest;
+            localVarRequestOptions.Data = customerReportFilterDTOApiRequest;
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerReportPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CustomerDTOApiResponse>("/api/Customer/Report", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerReportPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerAddressDTOApiResponse</returns>
+        public CustomerAddressDTOApiResponse ApiCustomerSetAddressPost(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> localVarResponse = ApiCustomerSetAddressPostWithHttpInfo(customerAddressDTOApiRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerAddressDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> ApiCustomerSetAddressPostWithHttpInfo(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json",
+                "text/json",
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = customerAddressDTOApiRequest;
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerSetAddressPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CustomerAddressDTOApiResponse>("/api/Customer/SetAddress", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerSetAddressPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerAddressDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<CustomerAddressDTOApiResponse> ApiCustomerSetAddressPostAsync(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse> localVarResponse = await ApiCustomerSetAddressPostWithHttpInfoAsync(customerAddressDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerAddressDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerAddressDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerAddressDTOApiResponse>> ApiCustomerSetAddressPostWithHttpInfoAsync(CustomerAddressDTOApiRequest? customerAddressDTOApiRequest = default(CustomerAddressDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json", 
+                "text/json", 
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = customerAddressDTOApiRequest;
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerSetAddressPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CustomerAddressDTOApiResponse>("/api/Customer/SetAddress", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerSetAddressPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerWishlistDTOApiResponse</returns>
+        public CustomerWishlistDTOApiResponse ApiCustomerWishlistIdDelete(int id, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = ApiCustomerWishlistIdDeleteWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerWishlistIdDeleteWithHttpInfo(int id, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("id", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerWishlistIdDelete";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<CustomerWishlistDTOApiResponse>("/api/Customer/Wishlist/{id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerWishlistIdDelete", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerWishlistIdDeleteAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = await ApiCustomerWishlistIdDeleteWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerWishlistIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("id", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerWishlistIdDelete";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<CustomerWishlistDTOApiResponse>("/api/Customer/Wishlist/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerWishlistIdDelete", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>CustomerWishlistDTOApiResponse</returns>
+        public CustomerWishlistDTOApiResponse ApiCustomerWishlistPost(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = ApiCustomerWishlistPostWithHttpInfo(customerWishlistDTOApiRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CustomerWishlistDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostWithHttpInfo(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json",
+                "text/json",
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = customerWishlistDTOApiRequest;
+
+            localVarRequestOptions.Operation = "CustomerApi.ApiCustomerWishlistPost";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CustomerWishlistDTOApiResponse>("/api/Customer/Wishlist", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiCustomerWishlistPost", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomerWishlistDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<CustomerWishlistDTOApiResponse> ApiCustomerWishlistPostAsync(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse> localVarResponse = await ApiCustomerWishlistPostWithHttpInfoAsync(customerWishlistDTOApiRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="customerWishlistDTOApiRequest"> (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomerWishlistDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<CustomerWishlistDTOApiResponse>> ApiCustomerWishlistPostWithHttpInfoAsync(CustomerWishlistDTOApiRequest? customerWishlistDTOApiRequest = default(CustomerWishlistDTOApiRequest?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json", 
+                "text/json", 
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Data = customerWishlistDTOApiRequest;
 
             localVarRequestOptions.Operation = "CustomerApi.ApiCustomerWishlistPost";
             localVarRequestOptions.OperationIndex = operationIndex;

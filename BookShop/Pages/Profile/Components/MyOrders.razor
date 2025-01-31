@@ -1,4 +1,11 @@
 ﻿@page "/Profile/Orders"
+@using BookShop.Services;
+@using BookShop.Utility;
+
+@inject CookieHelper CookieHelper;
+@inject NavigationManager navManager;
+@inject UserLoginStateContainer UserLoginStateContainer;
+
 
 <div class="shop-bx shop-profile">
     <div class="shop-bx-title clearfix">
@@ -9,24 +16,48 @@
              <TableHeader ThemeContrast="ThemeContrast.Light">
                  <TableRow>
                      <TableHeaderCell>#</TableHeaderCell>
-                     <TableHeaderCell>First Name</TableHeaderCell>
-                     <TableHeaderCell>Last Name</TableHeaderCell>
-                     <TableHeaderCell>Username</TableHeaderCell>
+                     <TableHeaderCell>تاریخ ایجاد</TableHeaderCell>
+                     <TableHeaderCell>نام مشتری</TableHeaderCell>
+                     <TableHeaderCell>وضعیت</TableHeaderCell>
+                     <TableHeaderCell>روش پرداخت</TableHeaderCell>
+                     <TableHeaderCell>مبلغ کل (ریال)</TableHeaderCell>
+                     <TableHeaderCell></TableHeaderCell>
                  </TableRow>
              </TableHeader>
              <TableBody>
-                 @for (int i = 1; i <= 50; ++i)
+                 @if (!(cashOrders?.Any() ?? false))
                 {
-                    var index = i.ToString();
+                    <h4>اطلاعات سفارش ها یافت نشد</h4>
+                }
+                else
+                {
+                    @foreach (var order in cashOrders.Select((value, index) => (value, index)))
+                    {
+                        <TableRow @key="order.value.Id">
+                            <TableRowHeader>@(order.index + 1)</TableRowHeader>
+                                <TableRowCell>@order.value.CreateDate.ToPersianCalender()</TableRowCell>
+                                <TableRowCell>@order.value.CustomerFullName</TableRowCell>
+                                <TableRowCell>@order.value.StatusStr</TableRowCell>
+                                <TableRowCell>@(order.value.IsInstallment ? "اقساطی" : "نقدی")</TableRowCell>
+                                <TableRowCell>@order.value.TotalAmount.ToPriceFormat()</TableRowCell>
+                                <TableRowCell>
+                                    <Dropdown>
+                                        <DropdownToggle Color="Color.Primary">
+                                            عملیات
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem Clicked="() => ClickOrderViewButton(order.value.Id)">مشاهده</DropdownItem>
+                                            <DropdownDivider />
+                                            @if (order.value.Status == ApiCaller.Model.OrderStatus.AwaitingPayment)
+                                            {
+                                                <DropdownItem Clicked="() => TestGuaranteeFile(order.value.Id)">پرداخت</DropdownItem>
+                                            }
 
-                    <TableRow @key="@index">
-                        <TableRowHeader>@index</TableRowHeader>
-                        <TableRowCell>Column content</TableRowCell>
-                        <TableRowCell>Column content</TableRowCell>
-                        <TableRowCell>
-                            <Button Color="Color.Primary">مشاهده</Button>
-                        </TableRowCell>
-                    </TableRow>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </TableRowCell>
+                        </TableRow>
+                    }
                 }
             </TableBody>
         </Table>
@@ -39,24 +70,47 @@
              <TableHeader ThemeContrast="ThemeContrast.Light">
                  <TableRow>
                      <TableHeaderCell>#</TableHeaderCell>
-                     <TableHeaderCell>First Name</TableHeaderCell>
-                     <TableHeaderCell>Last Name</TableHeaderCell>
-                     <TableHeaderCell>Username</TableHeaderCell>
+                     <TableHeaderCell>تاریخ ایجاد</TableHeaderCell>
+                     <TableHeaderCell>نام مشتری</TableHeaderCell>
+                     <TableHeaderCell>وضعیت</TableHeaderCell>
+                     <TableHeaderCell>روش پرداخت</TableHeaderCell>
+                     <TableHeaderCell>مبلغ کل (ریال)</TableHeaderCell>
+                     <TableHeaderCell></TableHeaderCell>
                  </TableRow>
              </TableHeader>
              <TableBody>
-                 @for (int i = 1; i <= 50; ++i)
+                 @if (!(installmentOrders?.Any() ?? false))
                 {
-                    var index = i.ToString();
-
-                    <TableRow @key="@index">
-                        <TableRowHeader>@index</TableRowHeader>
-                        <TableRowCell>Column content</TableRowCell>
-                        <TableRowCell>Column content</TableRowCell>
-                        <TableRowCell>
-                            <Button Color="Color.Primary">مشاهده</Button>
-                        </TableRowCell>
-                    </TableRow>
+                    <h4>اطلاعات سفارش ها یافت نشد</h4>
+                }
+                else
+                {
+                    @foreach (var order in installmentOrders.Select((value, index) => (value, index)))
+                    {
+                        <TableRow @key="order.value.Id">
+                            <TableRowHeader>@(order.index + 1)</TableRowHeader>
+                                <TableRowCell>@order.value.CreateDate.ToPersianCalender()</TableRowCell>
+                                <TableRowCell>@order.value.CustomerFullName</TableRowCell>
+                                <TableRowCell>@order.value.StatusStr</TableRowCell>
+                                <TableRowCell>@(order.value.IsInstallment ? "اقساطی" : "نقدی")</TableRowCell>
+                                <TableRowCell>@order.value.TotalAmount</TableRowCell>
+                                <TableRowCell>
+                                    <Dropdown>
+                                        <DropdownToggle Color="Color.Primary">
+                                            عملیات
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem>مشاهده</DropdownItem>
+                                            <DropdownDivider />
+                                            @if (order.value.Status == ApiCaller.Model.OrderStatus.GetGuarantee)
+                                            {
+                                                <DropdownItem Clicked="() => TestGuaranteeFile(order.value.Id)">دریافت ضمانت نامه</DropdownItem>
+                                            }
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </TableRowCell>
+                        </TableRow>
+                    }
                 }
             </TableBody>
         </Table>
@@ -65,5 +119,46 @@
 
 
 @code {
+    [Inject] public IModalService? ModalService { get; set; }
 
+    List<ApiCaller.Model.OrderDTO> cashOrders = new List<ApiCaller.Model.OrderDTO>();
+    List<ApiCaller.Model.OrderDTO> installmentOrders = new List<ApiCaller.Model.OrderDTO>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadOrders();
+
+        await base.OnParametersSetAsync();
+    }
+
+    private async Task LoadOrders()
+    {
+        int customerId = UserLoginStateContainer.Customer?.Id ?? 0;
+        if (customerId <= 0)
+            return;
+
+        await ApiCallService.OrderApi.ConfigureWebToken();
+        var response = await ApiCallService.OrderApi.ApiOrderGetCustomerOrdersCustomerIdGetAsync(customerId);
+
+        if (!(response?.IsSuccess ?? false))
+            return;
+
+        cashOrders = response.ResponseDTOList?.Where(x => !x.IsInstallment)?.ToList() ?? new List<ApiCaller.Model.OrderDTO>();
+        installmentOrders = response.ResponseDTOList?.Except(cashOrders)?.ToList() ?? new List<ApiCaller.Model.OrderDTO>();
+    }
+
+    private async Task TestGuaranteeFile(int orderId)
+    {
+        await ModalService.Show<UploadOrderGuaranteeModal>(x => x.Add("OrderId", orderId), new ModalInstanceOptions
+            {
+                Size = ModalSize.Large,
+                Centered = true,
+                UseModalStructure = false,
+            });
+    }
+
+    private void ClickOrderViewButton(int orderId)
+    {
+        navManager.NavigateTo($"/Profile/Orders/{orderId}", false);
+    }
 }

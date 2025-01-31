@@ -40,14 +40,14 @@ namespace BookShop.ApiCaller.Model
         /// <param name="isbn">isbn.</param>
         /// <param name="publisherID">publisherID.</param>
         /// <param name="publisherTitle">publisherTitle.</param>
-        /// <param name="bookGroups">bookGroups.</param>
-        /// <param name="bookAuthors">bookAuthors.</param>
-        /// <param name="bookTranslators">bookTranslators.</param>
+        /// <param name="groupsIds">groupsIds.</param>
+        /// <param name="authorIds">authorIds.</param>
+        /// <param name="translatorIds">translatorIds.</param>
         /// <param name="createDate">createDate.</param>
         /// <param name="price">price.</param>
         /// <param name="pageNumbers">pageNumbers.</param>
         /// <param name="imageKey">imageKey.</param>
-        public BookDTO(int id = default(int), string message = default(string), string title = default(string), string isbn = default(string), int publisherID = default(int), string publisherTitle = default(string), List<GroupDTO> bookGroups = default(List<GroupDTO>), List<AuthorDTO> bookAuthors = default(List<AuthorDTO>), List<TranslatorDTO> bookTranslators = default(List<TranslatorDTO>), DateTime createDate = default(DateTime), double price = default(double), int pageNumbers = default(int), string imageKey = default(string))
+        public BookDTO(int id = default(int), string message = default(string), string title = default(string), string isbn = default(string), int publisherID = default(int), string publisherTitle = default(string), List<int> groupsIds = default(List<int>), List<int> authorIds = default(List<int>), List<int> translatorIds = default(List<int>), DateTime createDate = default(DateTime), double price = default(double), int pageNumbers = default(int), string imageKey = default(string))
         {
             this.Id = id;
             this.Message = message;
@@ -55,9 +55,9 @@ namespace BookShop.ApiCaller.Model
             this.Isbn = isbn;
             this.PublisherID = publisherID;
             this.PublisherTitle = publisherTitle;
-            this.BookGroups = bookGroups;
-            this.BookAuthors = bookAuthors;
-            this.BookTranslators = bookTranslators;
+            this.GroupsIds = groupsIds;
+            this.AuthorIds = authorIds;
+            this.TranslatorIds = translatorIds;
             this.CreateDate = createDate;
             this.Price = price;
             this.PageNumbers = pageNumbers;
@@ -101,22 +101,22 @@ namespace BookShop.ApiCaller.Model
         public string PublisherTitle { get; set; }
 
         /// <summary>
-        /// Gets or Sets BookGroups
+        /// Gets or Sets GroupsIds
         /// </summary>
-        [DataMember(Name = "bookGroups", EmitDefaultValue = true)]
-        public List<GroupDTO> BookGroups { get; set; }
+        [DataMember(Name = "groupsIds", EmitDefaultValue = true)]
+        public List<int> GroupsIds { get; set; }
 
         /// <summary>
-        /// Gets or Sets BookAuthors
+        /// Gets or Sets AuthorIds
         /// </summary>
-        [DataMember(Name = "bookAuthors", EmitDefaultValue = true)]
-        public List<AuthorDTO> BookAuthors { get; set; }
+        [DataMember(Name = "authorIds", EmitDefaultValue = true)]
+        public List<int> AuthorIds { get; set; }
 
         /// <summary>
-        /// Gets or Sets BookTranslators
+        /// Gets or Sets TranslatorIds
         /// </summary>
-        [DataMember(Name = "bookTranslators", EmitDefaultValue = true)]
-        public List<TranslatorDTO> BookTranslators { get; set; }
+        [DataMember(Name = "translatorIds", EmitDefaultValue = true)]
+        public List<int> TranslatorIds { get; set; }
 
         /// <summary>
         /// Gets or Sets CreateDate
@@ -156,9 +156,9 @@ namespace BookShop.ApiCaller.Model
             sb.Append("  Isbn: ").Append(Isbn).Append("\n");
             sb.Append("  PublisherID: ").Append(PublisherID).Append("\n");
             sb.Append("  PublisherTitle: ").Append(PublisherTitle).Append("\n");
-            sb.Append("  BookGroups: ").Append(BookGroups).Append("\n");
-            sb.Append("  BookAuthors: ").Append(BookAuthors).Append("\n");
-            sb.Append("  BookTranslators: ").Append(BookTranslators).Append("\n");
+            sb.Append("  GroupsIds: ").Append(GroupsIds).Append("\n");
+            sb.Append("  AuthorIds: ").Append(AuthorIds).Append("\n");
+            sb.Append("  TranslatorIds: ").Append(TranslatorIds).Append("\n");
             sb.Append("  CreateDate: ").Append(CreateDate).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  PageNumbers: ").Append(PageNumbers).Append("\n");

@@ -4,6 +4,9 @@
 @layout MainLayout
 
 @inject CookieHelper CookieHelper;
+@inject UserLoginStateContainer UserLoginStateContainer;
+@inject ToastHelper ToastHelper;
+@inject NavigationManager navManager;
 
 <!-- Content -->
 <div class="page-content bg-white">
@@ -78,20 +81,36 @@
 
     private async Task CustomerGet()
     {
-        var userIdStr = await CookieHelper.GetCookie("User");
-        if (string.IsNullOrWhiteSpace(userIdStr))
+        var customer = UserLoginStateContainer.Customer;
+    }
+
+    private async Task Logout()
+    {
+        var session = await CookieHelper.GetCookie("Session");
+        if (string.IsNullOrWhiteSpace(session))
             return;
 
-        int userId = Int32.Parse(userIdStr);
-
-        var customerGetResponse = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiCaller.Model.ApiRequest
+        var response = await ApiCallService.UserApi.ApiUserLogoutPostAsync(new ApiCaller.Model.LogoutRequestDTOApiRequest
             {
-                Id = userId
+                RequestDTO = new ApiCaller.Model.LogoutRequestDTO
+                {
+                    SessionIdentifier = session
+                }
             });
 
-        if (!(customerGetResponse?.IsSuccess ?? false))
-            return;
+        if (response?.IsSuccess ?? false)
+        {
+            await CookieHelper.DeleteCookie("WebToken");
+            await CookieHelper.DeleteCookie("User");
+            await CookieHelper.DeleteCookie("Session");
 
-        customer = customerGetResponse.ResponseDTO;
+            UserLoginStateContainer.SetValue(isLogin: false);
+            await ToastHelper.Notify("خروج از حساب کاربری با موفقیت انجام شد", ToastType.Success);
+
+            navManager.NavigateTo("/", false);
+        }
+        else
+            await ToastHelper.Notify(response?.Message ?? "خروج از حساب کاربری با خطا مواجه شد", ToastType.Error);
+
     }
 }

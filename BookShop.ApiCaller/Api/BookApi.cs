@@ -50,6 +50,26 @@ namespace BookShop.ApiCaller.Api
         /// 
         /// </summary>
         /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>BookDTOApiResponse</returns>
+        BookDTOApiResponse ApiBookGetIdGet(int id, int operationIndex = 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of BookDTOApiResponse</returns>
+        ApiResponse<BookDTOApiResponse> ApiBookGetIdGetWithHttpInfo(int id, int operationIndex = 0);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bookReportFilterDTOApiRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>BookDTOReportResultApiResponse</returns>
@@ -120,6 +140,31 @@ namespace BookShop.ApiCaller.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BookDTOApiResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<BookDTOApiResponse>> ApiBookDeleteIdDeleteWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BookDTOApiResponse</returns>
+        System.Threading.Tasks.Task<BookDTOApiResponse> ApiBookGetIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BookDTOApiResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BookDTOApiResponse>> ApiBookGetIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -427,6 +472,152 @@ namespace BookShop.ApiCaller.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ApiBookDeleteIdDelete", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>BookDTOApiResponse</returns>
+        public BookDTOApiResponse ApiBookGetIdGet(int id, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.ApiResponse<BookDTOApiResponse> localVarResponse = ApiBookGetIdGetWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of BookDTOApiResponse</returns>
+        public BookShop.ApiCaller.Client.ApiResponse<BookDTOApiResponse> ApiBookGetIdGetWithHttpInfo(int id, int operationIndex = 0)
+        {
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("id", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "BookApi.ApiBookGetIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<BookDTOApiResponse>("/api/Book/Get/{id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiBookGetIdGet", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BookDTOApiResponse</returns>
+        public async System.Threading.Tasks.Task<BookDTOApiResponse> ApiBookGetIdGetAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            BookShop.ApiCaller.Client.ApiResponse<BookDTOApiResponse> localVarResponse = await ApiBookGetIdGetWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="BookShop.ApiCaller.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BookDTOApiResponse)</returns>
+        public async System.Threading.Tasks.Task<BookShop.ApiCaller.Client.ApiResponse<BookDTOApiResponse>> ApiBookGetIdGetWithHttpInfoAsync(int id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+
+            BookShop.ApiCaller.Client.RequestOptions localVarRequestOptions = new BookShop.ApiCaller.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = BookShop.ApiCaller.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("id", BookShop.ApiCaller.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            localVarRequestOptions.Operation = "BookApi.ApiBookGetIdGet";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("WebToken")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("WebToken", this.Configuration.GetApiKeyWithPrefix("WebToken"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<BookDTOApiResponse>("/api/Book/Get/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ApiBookGetIdGet", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

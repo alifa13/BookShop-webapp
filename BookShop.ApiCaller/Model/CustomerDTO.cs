@@ -44,8 +44,7 @@ namespace BookShop.ApiCaller.Model
         /// <param name="userId">userId.</param>
         /// <param name="nationalCode">nationalCode.</param>
         /// <param name="contact">contact.</param>
-        /// <param name="wishlist">wishlist.</param>
-        public CustomerDTO(int id = default(int), string message = default(string), string firstName = default(string), string lastName = default(string), string mobile = default(string), string tel = default(string), string email = default(string), int userId = default(int), string nationalCode = default(string), string contact = default(string), List<CustomerWishlistDTO> wishlist = default(List<CustomerWishlistDTO>))
+        public CustomerDTO(int id = default(int), string message = default(string), string firstName = default(string), string lastName = default(string), string mobile = default(string), string tel = default(string), string email = default(string), int userId = default(int), string nationalCode = default(string), string contact = default(string))
         {
             this.Id = id;
             this.Message = message;
@@ -57,7 +56,6 @@ namespace BookShop.ApiCaller.Model
             this.UserId = userId;
             this.NationalCode = nationalCode;
             this.Contact = contact;
-            this.Wishlist = wishlist;
         }
 
         /// <summary>
@@ -121,12 +119,6 @@ namespace BookShop.ApiCaller.Model
         public string Contact { get; set; }
 
         /// <summary>
-        /// Gets or Sets Wishlist
-        /// </summary>
-        [DataMember(Name = "wishlist", EmitDefaultValue = true)]
-        public List<CustomerWishlistDTO> Wishlist { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -144,7 +136,6 @@ namespace BookShop.ApiCaller.Model
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  NationalCode: ").Append(NationalCode).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
-            sb.Append("  Wishlist: ").Append(Wishlist).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

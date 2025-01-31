@@ -36,13 +36,13 @@ namespace BookShop.ApiCaller.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="message">message.</param>
-        /// <param name="bookDTO">bookDTO.</param>
+        /// <param name="bookId">bookId.</param>
         /// <param name="customerId">customerId.</param>
-        public CustomerWishlistDTO(int id = default(int), string message = default(string), BookDTO bookDTO = default(BookDTO), int customerId = default(int))
+        public CustomerWishlistDTO(int id = default(int), string message = default(string), int bookId = default(int), int customerId = default(int))
         {
             this.Id = id;
             this.Message = message;
-            this.BookDTO = bookDTO;
+            this.BookId = bookId;
             this.CustomerId = customerId;
         }
 
@@ -59,10 +59,10 @@ namespace BookShop.ApiCaller.Model
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets BookDTO
+        /// Gets or Sets BookId
         /// </summary>
-        [DataMember(Name = "bookDTO", EmitDefaultValue = false)]
-        public BookDTO BookDTO { get; set; }
+        [DataMember(Name = "bookId", EmitDefaultValue = false)]
+        public int BookId { get; set; }
 
         /// <summary>
         /// Gets or Sets CustomerId
@@ -80,7 +80,7 @@ namespace BookShop.ApiCaller.Model
             sb.Append("class CustomerWishlistDTO {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  BookDTO: ").Append(BookDTO).Append("\n");
+            sb.Append("  BookId: ").Append(BookId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

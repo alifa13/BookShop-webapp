@@ -31,12 +31,6 @@ namespace BookShop.ApiCaller.Model
     [DataContract(Name = "BookReportFilterDTO")]
     public partial class BookReportFilterDTO : IValidatableObject
     {
-
-        /// <summary>
-        /// Gets or Sets LoadOption
-        /// </summary>
-        [DataMember(Name = "loadOption", EmitDefaultValue = false)]
-        public BookReportLoadOption? LoadOption { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BookReportFilterDTO" /> class.
         /// </summary>
@@ -49,8 +43,7 @@ namespace BookShop.ApiCaller.Model
         /// <param name="fromPrice">fromPrice.</param>
         /// <param name="toPrice">toPrice.</param>
         /// <param name="bookTitle">bookTitle.</param>
-        /// <param name="loadOption">loadOption.</param>
-        public BookReportFilterDTO(int id = default(int), string message = default(string), List<int> bookIDs = default(List<int>), List<int> groupIDs = default(List<int>), List<int> publisherIDs = default(List<int>), List<int> authorIDs = default(List<int>), double? fromPrice = default(double?), double? toPrice = default(double?), string bookTitle = default(string), BookReportLoadOption? loadOption = default(BookReportLoadOption?))
+        public BookReportFilterDTO(int id = default(int), string message = default(string), List<int> bookIDs = default(List<int>), List<int> groupIDs = default(List<int>), List<int> publisherIDs = default(List<int>), List<int> authorIDs = default(List<int>), double? fromPrice = default(double?), double? toPrice = default(double?), string bookTitle = default(string))
         {
             this.Id = id;
             this.Message = message;
@@ -61,7 +54,6 @@ namespace BookShop.ApiCaller.Model
             this.FromPrice = fromPrice;
             this.ToPrice = toPrice;
             this.BookTitle = bookTitle;
-            this.LoadOption = loadOption;
         }
 
         /// <summary>
@@ -135,7 +127,6 @@ namespace BookShop.ApiCaller.Model
             sb.Append("  FromPrice: ").Append(FromPrice).Append("\n");
             sb.Append("  ToPrice: ").Append(ToPrice).Append("\n");
             sb.Append("  BookTitle: ").Append(BookTitle).Append("\n");
-            sb.Append("  LoadOption: ").Append(LoadOption).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

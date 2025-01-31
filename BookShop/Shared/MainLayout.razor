@@ -1,4 +1,5 @@
-﻿@using BookShop.Utility;
+﻿@using BookShop.Services;
+@using BookShop.Utility;
 @inherits LayoutComponentBase
 
 @inject UserLoginStateContainer UserLoginStateContainer
@@ -20,12 +21,27 @@
     protected override async Task OnInitializedAsync()
     {
         var token = await CookieHelper.GetCookie("WebToken");
-        var userId = await CookieHelper.GetCookie("User");
+        var userIdStr = await CookieHelper.GetCookie("User");
         var session = await CookieHelper.GetCookie("Session");
 
         if (string.IsNullOrWhiteSpace(token))
+        {
             UserLoginStateContainer.SetValue(false);
+        }
         else
-            UserLoginStateContainer.SetValue(true, token, session, int.Parse(userId), true);
+        {
+            if (int.TryParse(userIdStr, out int userId))
+            {
+                var customerGetResponse = await ApiCallService.CustomerApi.ApiCustomerGetPostAsync(new ApiCaller.Model.ApiRequest
+                    {
+                        Id = userId
+                    });
+
+                if (!(customerGetResponse?.IsSuccess ?? false))
+                    return;
+
+                UserLoginStateContainer.SetValue(true, token, session, userId, customerGetResponse.ResponseDTO, notify: true);
+            }
+        }
     }
 }

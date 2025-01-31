@@ -1,135 +1,202 @@
 ﻿@page "/Profile/PersonalInfo"
 
 @using BookShop.ApiCaller.Api;
+@using BookShop.Services;
 @using BookShop.Utility;
 
 @inject ToastHelper ToastHelper;
 @inject NavigationManager navManager;
-@inject IConfiguration Configuration;
+@inject UserLoginStateContainer UserLoginStateContainer;
 
 <div class="shop-bx shop-profile">
-	<div class="shop-bx-title clearfix">
-		<h5 class="text-uppercase">اطلاعات کاربری</h5>
-	</div>
-	<form>
-		<div class="row m-b30">
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-3">
-					<Field>
-						<FieldLabel Class="label-title">
-							نام
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.FirstName)" Role="TextRole.Text" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-3">
-					<Field>
-						<FieldLabel Class="label-title">
-							نام خانوادگی
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.LastName)" Role="TextRole.Text" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-3">
-					<Field>
-						<FieldLabel Class="label-title">
-							شماره همراه *
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.Mobile)" Placeholder="09123456789" Pattern="[0-9]{11}" Role="TextRole.Text" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-3">
-					<Field>
-						<FieldLabel Class="label-title">
-							تلفن ثابت *
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.Tel)" Placeholder="02511111111" Pattern="[0-9]{11}" Role="TextRole.Text" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-3">
-					<Field>
-						<FieldLabel Class="label-title">
-							پست الکترونیک
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.Email)" Role="TextRole.Email" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-4">
-					<Field>
-						<FieldLabel Class="label-title">
-							کد ملی
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.NationalCode)" Pattern="[0-9]{10}" Role="TextRole.Text" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<div class="mb-4">
-					<Field>
-						<FieldLabel Class="label-title">
-							معرف
-						</FieldLabel>
-						<FieldBody>
-							<TextEdit @bind-Text="@(customerRegisterDTO.Customer.Contact)" Role="TextRole.Text" />
-						</FieldBody>
-					</Field>
-				</div>
-			</div>
-		</div>
+    <div class="shop-bx-title clearfix">
+        <h5 class="text-uppercase">اطلاعات کاربری</h5>
+    </div>
+    <form>
+        <div class="row m-b30">
+            <Validations @ref="@validations" Mode="ValidationMode.Auto" Model="@customerRegisterDTO" HandlerType="typeof(FluentValidationHandler)">
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-3">
+                        <Validation>
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    نام
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.FirstName)" Role="TextRole.Text">
+                                        <Feedback>
+                                            <ValidationError>نام را پر کنید</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-3">
+                        <Validation>
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    نام خانوادگی
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.LastName)" Role="TextRole.Text">
+                                        <Feedback>
+                                            <ValidationError>نام خانوادگی را پر کنید</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-3">
+                        <Validation>
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    شماره همراه *
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.Mobile)" Placeholder="09123456789" Role="TextRole.Text">
+                                        <Feedback>
+                                            <ValidationError>شماره تلفن همراه وارد شده صحیح نیست</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-3">
+                        <Validation>
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    تلفن ثابت *
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.Tel)" Placeholder="02511111111" EditMask="025-11111111" Role="TextRole.Text">
+                                        <Feedback>
+                                            <ValidationError>شماره تلفن ثابت وارد شده صحیح نیست</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-3">
+                        <Validation>
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    پست الکترونیک
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.Email)" Role="TextRole.Email">
+                                        <Feedback>
+                                            <ValidationError>پست الکترونیک وارد شده صحیح نیست</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-4">
+                        <Validation>
+                            <Field>
+                                <FieldLabel Class="label-title">
+                                    کد ملی
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit @bind-Text="@(customerRegisterDTO.NationalCode)" Pattern="[0-9]{10}" Role="TextRole.Text">
+                                        <Feedback>
+                                            <ValidationError>کد ملی صحیح وارد شده صحیح نیست</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="mb-4">
+                        <Field>
+                            <FieldLabel Class="label-title">
+                                معرف
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit @bind-Text="@(customerRegisterDTO.Contact)" Role="TextRole.Text" />
+                            </FieldBody>
+                        </Field>
+                    </div>
+                </div>
+            </Validations>
+        </div>
 
-		<Button Clicked="SaveButtonClick" class="btn btn-primary btnhover">ذخیره تغییرات</Button>
-	</form>
+        <Button Clicked="SaveButtonClick" class="btn btn-primary btnhover">ذخیره تغییرات</Button>
+    </form>
 </div>
 
 @code {
-	ICustomerApi _CustomerApi = null;
-	ApiCaller.Model.CustomerRegisterDTO customerRegisterDTO = new ApiCaller.Model.CustomerRegisterDTO()
-		{
-			Customer = new ApiCaller.Model.CustomerDTO()
-		};
+    Validations? validations;
+    ApiCaller.Model.CustomerRegisterDTO? customerRegisterDTO = new();
 
-	private async void SaveButtonClick()
-	{
-		_CustomerApi = new CustomerApi(Configuration["ApiBaseAddress"]);
+    protected override async Task OnParametersSetAsync()
+    {
+        var customer = UserLoginStateContainer.Customer;
+        if (customer is null)
+        {
+            await ToastHelper.Notify("دریافت اطلاعات کاربر با خطا مواجه شد", ToastType.Error);
+            return;
+        }
 
-		var response = await _CustomerApi.ApiCustomerRegisterPostAsync(new ApiCaller.Model.CustomerRegisterDTOApiRequest
-			{
-				RequestDTO = customerRegisterDTO
-			});
+        customerRegisterDTO = new ApiCaller.Model.CustomerRegisterDTO
+            {
+                Id = customer.Id,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Contact = customer.Contact,
+                Email = customer.Email,
+                Mobile = customer.Mobile,
+                NationalCode = customer.NationalCode,
+                Tel = customer.Tel
+            };
 
-		if (response?.IsSuccess ?? false)
-		{
-			if (response.ResponseDTO is null)
-			{
-				await ToastHelper.Notify("خطای نامشخص هنگام ذخیره تغییرات", ToastType.Error);
-				return;
-			}
+        await base.OnParametersSetAsync();
+    }
 
-			await ToastHelper.Notify("ذخیره تغییرات با موفقیت انجام شد", ToastType.Success);
-		}
-		else
-			await ToastHelper.Notify(!string.IsNullOrWhiteSpace(response?.Message) ? response.Message : "خطای نامشخص هنگام ذخیره تغییرات", ToastType.Error);
-	}
+    private async void SaveButtonClick()
+    {
+        if (validations is null)
+            return;
+
+        bool isValid = await validations.ValidateAll();
+        if (!isValid)
+            return;
+
+        var response = await ApiCallService.CustomerApi.ApiCustomerRegisterPostAsync(new ApiCaller.Model.CustomerRegisterDTOApiRequest
+            {
+                RequestDTO = customerRegisterDTO
+            });
+
+        if (response?.IsSuccess ?? false)
+        {
+            if (response.ResponseDTO is null)
+            {
+                await ToastHelper.Notify("خطای نامشخص هنگام ذخیره تغییرات", ToastType.Error);
+                return;
+            }
+
+            await ToastHelper.Notify("ذخیره تغییرات با موفقیت انجام شد", ToastType.Success);
+
+            UserLoginStateContainer.SetValue(true, customer: response.ResponseDTO);
+        }
+        else
+            await ToastHelper.Notify(!string.IsNullOrWhiteSpace(response?.Message) ? response.Message : "خطای نامشخص هنگام ذخیره تغییرات", ToastType.Error);
+    }
 }
